@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "446571587095",
+    "project_id": "nicolas-2ce7b",
+    "storage_bucket": "nicolas-2ce7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446571587095:android:e159d5d6fd9c9ab7c0de52",
+        "android_client_info": {
+          "package_name": "com.magapost.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446571587095-qtuvck13snrt0obosk51oa5evllefjem.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.magapost.app",
+            "certificate_hash": "c024d1352a044d7fa93aed4dbcd6edc8242fba26"
+          }
+        },
+        {
+          "client_id": "446571587095-cqeiv6qi6cgba1bc6krcehtv6ccjhl9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgfx4Ll7FiKyhVyntsSx2_HPj09A91r3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446571587095-cqeiv6qi6cgba1bc6krcehtv6ccjhl9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

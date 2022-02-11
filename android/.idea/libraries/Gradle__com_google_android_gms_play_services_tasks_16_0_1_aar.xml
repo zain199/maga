@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.gms:play-services-tasks:16.0.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/cf7fcdfecd352827b6a2c7271f5fd95f/jetified-play-services-tasks-16.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/cf7fcdfecd352827b6a2c7271f5fd95f/jetified-play-services-tasks-16.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/cf7fcdfecd352827b6a2c7271f5fd95f/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/4862bedc01dcaed3596110655097ca27/jetified-play-services-tasks-16.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/4862bedc01dcaed3596110655097ca27/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/4862bedc01dcaed3596110655097ca27/jetified-play-services-tasks-16.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

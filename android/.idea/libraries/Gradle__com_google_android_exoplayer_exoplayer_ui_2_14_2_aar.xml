@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.exoplayer:exoplayer-ui:2.14.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/1eff972082d8a752e9a99c92819265be/jetified-exoplayer-ui-2.14.2/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/93daec8c2957fe87cc5fe80ab5a57636/jetified-exoplayer-ui-2.14.2/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/1eff972082d8a752e9a99c92819265be/jetified-exoplayer-ui-2.14.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/1eff972082d8a752e9a99c92819265be/jetified-exoplayer-ui-2.14.2/res" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/1eff972082d8a752e9a99c92819265be/jetified-exoplayer-ui-2.14.2/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/93daec8c2957fe87cc5fe80ab5a57636/jetified-exoplayer-ui-2.14.2/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/93daec8c2957fe87cc5fe80ab5a57636/jetified-exoplayer-ui-2.14.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/93daec8c2957fe87cc5fe80ab5a57636/jetified-exoplayer-ui-2.14.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-ui/2.14.2/fa2343c932472465e47ab49646e35151f9cbc611/exoplayer-ui-2.14.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

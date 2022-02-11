@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.gms:play-services-auth-base:16.0.0@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/9451b279dd58968fe792d911f88f23c9/jetified-play-services-auth-base-16.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/9451b279dd58968fe792d911f88f23c9/jetified-play-services-auth-base-16.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/9451b279dd58968fe792d911f88f23c9/jetified-play-services-auth-base-16.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/3821cf21feaec61c065c5b44892c30fd/jetified-play-services-auth-base-16.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/3821cf21feaec61c065c5b44892c30fd/jetified-play-services-auth-base-16.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/3821cf21feaec61c065c5b44892c30fd/jetified-play-services-auth-base-16.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

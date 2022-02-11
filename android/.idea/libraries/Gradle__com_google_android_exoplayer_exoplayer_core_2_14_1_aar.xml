@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.exoplayer:exoplayer-core:2.14.1@aar">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/adfc052b0a5a6c40fde4c52b4323a117/jetified-exoplayer-core-2.14.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/adfc052b0a5a6c40fde4c52b4323a117/jetified-exoplayer-core-2.14.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/adfc052b0a5a6c40fde4c52b4323a117/jetified-exoplayer-core-2.14.1/res" />
+      <root url="file://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/transforms-2/files-2.1/adfc052b0a5a6c40fde4c52b4323a117/jetified-exoplayer-core-2.14.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../tokdok/android/gradle/wrapper/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-core/2.14.1/d3c108723ca55350b66261c96083c03d6d3d0cf0/exoplayer-core-2.14.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

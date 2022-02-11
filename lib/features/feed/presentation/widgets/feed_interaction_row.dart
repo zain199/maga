@@ -111,7 +111,7 @@ class FeedInteractionRow extends StatelessWidget {
                     color: postEntity!.isLiked == null
                         ? Color(0xFF737880)
                         : postEntity!.isLiked!
-                            ? Colors.red
+                            ? Colors.purple
                             : Color(0xFF737880),
                     fontFamily: "CeraPro",
                     fontWeight: FontWeight.w400,

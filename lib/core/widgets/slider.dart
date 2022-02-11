@@ -174,13 +174,13 @@ class _CustomSliderState extends State<CustomSlider> {
         height: 100,
         width: 300,
         child: Text("No Youtube data found",
-            style: TextStyle(color: Colors.redAccent)),
+            style: TextStyle(color: Colors.purpleAccent)),
       );
     } else if (linkGet.contains("https://") || linkGet.contains("www.")) {
       print('qwd');
       return SimpleUrlPreviewWeb(
         url: CheckLink.checkYouTubeLink(linkGet),
-        bgColor: Colors.red,
+        bgColor: Colors.purple,
         isClosable: false,
         previewHeight: 180,
         homePagePostCreate: false,
@@ -353,7 +353,7 @@ class _CustomSliderState extends State<CustomSlider> {
       return GiphyWidget(
         path: widget.mediaItems![itemIndex].url,
         enableClose: false,
-      ).toContainer(color: Colors.red);
+      ).toContainer(color: Colors.purple);
     } else if (widget.mediaItems![itemIndex].mediaType == MediaTypeEnum.EMOJI) {
       return GiphyWidget(
         path: widget.mediaItems![itemIndex].url,
@@ -456,7 +456,7 @@ class _CustomSliderState extends State<CustomSlider> {
               return GiphyWidget(
                 path: widget.mediaItems![itemIndex].url,
                 enableClose: false,
-              ).toContainer(color: Colors.red);
+              ).toContainer(color: Colors.purple);
             case MediaTypeEnum.EMOJI:
               return GiphyWidget(
                 path: widget.mediaItems![itemIndex].url,
@@ -524,7 +524,7 @@ class _CustomSliderState extends State<CustomSlider> {
           enableClose: false,
           itemIndex: itemIndex,
           length: length,
-        ).toContainer(color: Colors.red);
+        ).toContainer(color: Colors.purple);
       } else if (widget.mediaItems![itemIndex].mediaType ==
           MediaTypeEnum.EMOJI) {
         return GiphyWidget(

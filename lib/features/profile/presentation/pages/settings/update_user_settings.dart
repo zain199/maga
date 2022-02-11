@@ -79,7 +79,7 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> {
                     },
                     color: widget.updateSettingEnum ==
                             UpdateSettingEnum.DELETE_ACCOUNT
-                        ? Colors.red
+                        ? Colors.purple
                         : AppColors.colorPrimary,
                   ).toPadding(16),
                 ].toColumn(

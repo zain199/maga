@@ -90,7 +90,7 @@ class _InteractionRowState extends State<InteractionRow> {
                   widget.postEntity?.likeCount ?? "0",
                   style: TextStyle(
                     color: widget.postEntity?.isLiked ?? false
-                        ? Colors.red
+                        ? Colors.purple
                         : Color(0xFFFFFFFF),
                     fontFamily: "CeraPro",
                     fontWeight: FontWeight.w400,
@@ -118,7 +118,7 @@ class _InteractionRowState extends State<InteractionRow> {
                 padding: EdgeInsets.only(top: 0),
                 child: widget.postEntity?.isReposted ?? false
                     ? AppIcons.repostIcon(
-                        color: Colors.red, height: 16, width: 16)
+                        color: Colors.purple, height: 16, width: 16)
                     : AppIcons.repostIcon(
                         color: Colors.white, height: 16, width: 16),
               ),

@@ -216,7 +216,7 @@ class PushNotificationHelper {
     final AndroidNotificationDetails androidPlatformChannelSpecifics =
         const AndroidNotificationDetails(
       '0',
-      'MagaPost',
+      'Mumblit',
       'your channel description',
       importance: Importance.max,
       priority: Priority.high,

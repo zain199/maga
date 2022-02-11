@@ -65,7 +65,7 @@ class SenderChatItem extends StatelessWidget {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.red.shade600,
+                              color: Colors.purple.shade600,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(
                                     !context.isArabic() ? 40 : 0),

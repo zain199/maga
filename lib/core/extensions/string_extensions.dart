@@ -318,11 +318,11 @@ extension StringExtension on String {
               vertical: 12.toVertical as double,
               horizontal: 6.toHorizontal as double),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Colors.red.withOpacity(.8)),
+            borderSide: BorderSide(width: 1, color: Colors.purple.withOpacity(.8)),
           ),
           errorBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(width: .8, color: Colors.red.withOpacity(.8)),
+                BorderSide(width: .8, color: Colors.purple.withOpacity(.8)),
           ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(width: 1, color: AppColors.placeHolderColor),
@@ -335,7 +335,7 @@ extension StringExtension on String {
           labelStyle: AppTheme.caption.copyWith(
               fontWeight: FontWeight.w600, color: AppColors.placeHolderColor),
           errorStyle: AppTheme.caption
-              .copyWith(color: Colors.red, fontWeight: FontWeight.w600),
+              .copyWith(color: Colors.purple, fontWeight: FontWeight.w600),
           errorText: errorText,
         ),
       );

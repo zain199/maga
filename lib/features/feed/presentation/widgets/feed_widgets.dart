@@ -259,7 +259,7 @@ class _PostItemState extends State<PostItem> {
                 bottom: 20,
               ),
               decoration: const BoxDecoration(
-                color: Colors.red,
+                color: Colors.purple,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -273,7 +273,7 @@ class _PostItemState extends State<PostItem> {
                     width: 37,
                     margin: EdgeInsets.only(bottom: 10),
                     decoration:  BoxDecoration(
-                      color:  Colors.red[900],
+                      color:  Colors.purple[900],
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       ),
@@ -637,7 +637,7 @@ class _PostItemState extends State<PostItem> {
             child: currentIndex == index
                 ? Container(
                     decoration: const BoxDecoration(
-                      color: Colors.red,
+                      color: Colors.purple,
                       shape: BoxShape.circle,
                     ),
                   )

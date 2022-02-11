@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
         }
 
         return MaterialApp.router(
-          title: 'MagaPost',
+          title: 'Mumblit',
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,

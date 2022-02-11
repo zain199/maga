@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .onTapWidget(() {
           context.router.root.push(ResetPasswordScreenRoute());
         }),
-        // "The email and password you entered does not match. Please double-check and try again".toCaption(color: Colors.red,fontWeight: FontWeight.w600).toVisibilityStreamBuilder(loginCubit.errorTextStream.stream)
+        // "The email and password you entered does not match. Please double-check and try again".toCaption(color: Colors.purple,fontWeight: FontWeight.w600).toVisibilityStreamBuilder(loginCubit.errorTextStream.stream)
       ].toColumn()
     ]
         .toColumn(

@@ -43,7 +43,7 @@ class _ThreadedPostItemState extends State<ThreadedPostItem> {
               widget.postEntity!.profileUrl!
                   .toRoundNetworkImage(radius: 13)
                   .toFlexible(),
-              'test'.toText.toContainer(color: Colors.red)
+              'test'.toText.toContainer(color: Colors.purple)
             ],
           ),
           [

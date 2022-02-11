@@ -52,7 +52,7 @@ class NoDataFoundScreen extends StatelessWidget {
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0),
                 side: const BorderSide(
-                  color: Colors.red,
+                  color: Colors.purple,
                   width: 10,
                 ),
               ),

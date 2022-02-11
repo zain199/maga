@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "446571587095",
-    "project_id": "nicolas-2ce7b",
-    "storage_bucket": "nicolas-2ce7b.appspot.com"
+    "project_number": "320703464240",
+    "project_id": "mumblit-fe888",
+    "storage_bucket": "mumblit-fe888.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:446571587095:android:e159d5d6fd9c9ab7c0de52",
+        "mobilesdk_app_id": "1:320703464240:android:ea7796a615edf97ab37ef5",
         "android_client_info": {
-          "package_name": "com.magapost.app"
+          "package_name": "com.mumblitsoc.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "446571587095-qtuvck13snrt0obosk51oa5evllefjem.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.magapost.app",
-            "certificate_hash": "c024d1352a044d7fa93aed4dbcd6edc8242fba26"
-          }
-        },
-        {
-          "client_id": "446571587095-cqeiv6qi6cgba1bc6krcehtv6ccjhl9u.apps.googleusercontent.com",
+          "client_id": "320703464240-kf0jioq9ikpe48eoafi3e4e2upjtcmbe.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBgfx4Ll7FiKyhVyntsSx2_HPj09A91r3E"
+          "current_key": "AIzaSyAGboPP5n_oJTH3wxtSb_EHDZZY-aGLe_M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "446571587095-cqeiv6qi6cgba1bc6krcehtv6ccjhl9u.apps.googleusercontent.com",
+              "client_id": "320703464240-kf0jioq9ikpe48eoafi3e4e2upjtcmbe.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

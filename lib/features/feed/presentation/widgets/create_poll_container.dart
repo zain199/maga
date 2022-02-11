@@ -93,7 +93,7 @@ class _CreatePollContainerState extends State<CreatePollContainer> {
                 .toUpperCase()
                 .toSubTitle2(
                   color: _numberOfChoices == 4
-                      ? Colors.redAccent.shade100
+                      ? Colors.purpleAccent.shade100
                       : AppColors.colorPrimary,
                   fontWeight:
                       _numberOfChoices == 4 ? FontWeight.w100 : FontWeight.w700,
@@ -108,7 +108,7 @@ class _CreatePollContainerState extends State<CreatePollContainer> {
                           })
                       : null,
                   borderColor: _numberOfChoices == 4
-                      ? Colors.redAccent.shade100
+                      ? Colors.purpleAccent.shade100
                       : AppColors.colorPrimary,
                 )
                 .toContainer(

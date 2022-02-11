@@ -313,7 +313,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 bottom: 20,
               ),
               decoration: const BoxDecoration(
-                color: Colors.red,
+                color: Colors.purple,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -326,7 +326,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     height: 6,
                     width: 37,
                     decoration:  BoxDecoration(
-                      color:  Colors.red[900],
+                      color:  Colors.purple[900],
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       ),

@@ -12,7 +12,7 @@ class AppThemeData {
       textTheme: appTextTheme,
       primaryColor: AppColors.colorPrimary,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      primarySwatch: Colors.red,
+      primarySwatch: Colors.purple,
       tabBarTheme: TabBarTheme(
         unselectedLabelStyle:
             context.subTitle2.copyWith(fontWeight: FontWeight.bold),

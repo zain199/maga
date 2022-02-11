@@ -59,7 +59,7 @@ extension ContextExtension on BuildContext {
         // TODO Exit Dialoge Title
         title: Text('Are you  sure?'),
         // TODO Exit Dialoge Body
-        content: new Text('Do you want to exit MagaPost'),
+        content: new Text('Do you want to exit Mumblit'),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.of(this).pop(false),
@@ -215,7 +215,7 @@ extension ContextExtension on BuildContext {
 
 snackBar(BuildContext context, String? text, bool isError) {
   Flushbar(
-    backgroundColor: isError ? Colors.red : AppColors.colorPrimary,
+    backgroundColor: isError ? Colors.purple : AppColors.colorPrimary,
     flushbarStyle: FlushbarStyle.GROUNDED,
     icon: Icon(
       isError ? Icons.error : Icons.done,

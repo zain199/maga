@@ -175,7 +175,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     child: Container(
                       color: scaffoldKey.currentState?.isDrawerOpen != null &&
                               scaffoldKey.currentState!.isDrawerOpen
-                          ? Colors.red.withOpacity(0.6)
+                          ? Colors.purple.withOpacity(0.6)
                           : Colors.transparent,
                       height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width / 1.3,
@@ -349,7 +349,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                               ? Container(
                                                   decoration:
                                                       const BoxDecoration(
-                                                    color: Colors.red,
+                                                    color: Colors.purple,
                                                     shape: BoxShape.circle,
                                                   ),
                                                 )
@@ -385,7 +385,7 @@ class _FeedScreenState extends State<FeedScreen> {
                             // height: 65,
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.3),
+                              color: Colors.purple.withOpacity(0.3),
                               shape: BoxShape.circle,
                             ),
                             child: FloatingActionButton(

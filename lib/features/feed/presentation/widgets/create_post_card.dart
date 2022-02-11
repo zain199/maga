@@ -707,7 +707,7 @@ class _CreatePostCardState extends State<CreatePostCard> {
       } else if (linkUrl.contains("https://") || linkUrl.contains("www.")) {
         return SimpleUrlPreviewWeb(
           url: linkUrl,
-          bgColor: Colors.red,
+          bgColor: Colors.purple,
           previewHeight: 200,
           homePagePostCreate: true,
           linkTitle: linkTitle,

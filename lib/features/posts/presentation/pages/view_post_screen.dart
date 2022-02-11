@@ -246,7 +246,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
           ),
           theme: const TimelineThemeData.raw(
             direction: Axis.vertical,
-            color: Colors.red,
+            color: Colors.purple,
             nodePosition: 0.0,
             nodeItemOverlap: true,
             indicatorPosition: 0.0,

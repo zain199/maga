@@ -19,7 +19,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
             const Icon(Icons.error),
             10.toSizedBox,
             widget.error!
-                .toSubTitle2(color: Colors.red, align: TextAlign.center)
+                .toSubTitle2(color: Colors.purple, align: TextAlign.center)
                 .toPadding(12),
           ],
         ),

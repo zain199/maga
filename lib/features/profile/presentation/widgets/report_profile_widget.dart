@@ -146,13 +146,13 @@ class _ReportProfileWidgetState extends State<ReportProfileWidget> {
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 1,
-                              color: Colors.red.withOpacity(.8),
+                              color: Colors.purple.withOpacity(.8),
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: .8,
-                              color: Colors.red.withOpacity(.8),
+                              color: Colors.purple.withOpacity(.8),
                             ),
                           ),
                           enabledBorder: const OutlineInputBorder(
@@ -173,7 +173,7 @@ class _ReportProfileWidgetState extends State<ReportProfileWidget> {
                               fontWeight: FontWeight.w600,
                               color: AppColors.placeHolderColor),
                           errorStyle: AppTheme.caption.copyWith(
-                            color: Colors.red,
+                            color: Colors.purple,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

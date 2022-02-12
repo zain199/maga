@@ -11,7 +11,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>MagaPost</string>
+		<string>Mumblit</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -35,7 +35,7 @@
 		<key>FacebookAppID</key>
 		<string>2462635543953135</string>
 		<key>FacebookDisplayName</key>
-		<string>MagaPost</string>
+		<string>Mumblit</string>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>instagram-stories</string>

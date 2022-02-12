@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "320703464240-q9l462vtntsli8qlcr6p3pnagsh3r2ed.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mumblitsoc.app",
+            "certificate_hash": "f1f379619026c2e37782072fb2d3a2e23d921460"
+          }
+        },
+        {
           "client_id": "320703464240-kf0jioq9ikpe48eoafi3e4e2upjtcmbe.apps.googleusercontent.com",
           "client_type": 3
         }

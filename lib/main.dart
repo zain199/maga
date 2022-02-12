@@ -1,3 +1,5 @@
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'app_theme_data.dart';
 import 'translations/codegen_loader.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -47,6 +49,7 @@ void main() async {
   AC.getInstance();
   await NativeDeviceOrientationCommunicator().orientation(useSensor: false);
   await configureDependencies();
+
   localDataSource = getIt<LocalDataSource>();
   isUserLoggedIn = await localDataSource!.isUserLoggedIn();
 

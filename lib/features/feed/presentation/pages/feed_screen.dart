@@ -435,6 +435,7 @@ class _FeedScreenState extends State<FeedScreen> {
       },
       child: Scrollbar(
         child: CustomScrollView(
+
           slivers: [
             // StoriesWidget(),
             SliverToBoxAdapter(),

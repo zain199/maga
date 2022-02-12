@@ -1,4 +1,3 @@
-import 'core/extensions/context_exrensions.dart';
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
@@ -15,8 +14,8 @@ class AppThemeData {
       primarySwatch: Colors.purple,
       tabBarTheme: TabBarTheme(
         unselectedLabelStyle:
-            context.subTitle2.copyWith(fontWeight: FontWeight.bold),
-        labelStyle: context.subTitle2.copyWith(fontWeight: FontWeight.bold),
+            Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
+        labelStyle: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         labelColor: AppColors.colorPrimary,
         unselectedLabelColor: Colors.grey,
       ),

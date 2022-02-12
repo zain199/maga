@@ -36,8 +36,7 @@ import 'package:colibri/extensions.dart';
 part 'feed_state.dart';
 
 @injectable
-class FeedCubit extends PostPaginatonCubit<PostEntity, CommonUIState>
-    with PostInteractionMixin {
+class FeedCubit extends PostPaginatonCubit<PostEntity, CommonUIState> with PostInteractionMixin {
   final currentPageController =
       BehaviorSubject<ScreenType>.seeded(const ScreenType.home());
 

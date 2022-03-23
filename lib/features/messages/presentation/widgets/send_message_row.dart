@@ -1,12 +1,12 @@
-import 'package:colibri/core/extensions/context_exrensions.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/core/theme/app_theme.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/core/widgets/media_picker.dart';
-import 'package:colibri/features/feed/presentation/widgets/create_post_card.dart';
-import 'package:colibri/features/messages/presentation/bloc/chat_cubit.dart';
+import '../../../../core/extensions/context_exrensions.dart';
+import '../../../../core/extensions/widget_extensions.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/images.dart';
+import '../../../../core/widgets/media_picker.dart';
+import '../../../feed/presentation/widgets/create_post_card.dart';
+import '../bloc/chat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

@@ -40,24 +40,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   expandedHeight: 60.toHeight as double?,
                   floating: true,
                   pinned: true,
-                  // title: Text('Profile'),
                   backgroundColor: Colors.white,
                   bottom: PreferredSize(
                     preferredSize: Size(context.getScreenWidth as double,
                         56.toHeight as double),
                     child: Stack(
                       children: [
-                        Positioned.fill(
-                          top: 0.0,
-                          child: Container(
-                            color: Colors.white,
-                          ).makeBottomBorder,
-                        ),
-                        TabBar(
-                          tabs: [
-                            Tab(text: LocaleKeys.notifications.tr()),
-                            Tab(text: LocaleKeys.mentions.tr()),
-                          ],
+                        Container(
+                          color: Colors.white,
+                          child: TabBar(
+                            tabs: [
+                              Tab(text: LocaleKeys.notifications.tr()),
+                              Tab(text: LocaleKeys.mentions.tr()),
+                            ],
+                          ),
                         ),
                       ],
                     ),

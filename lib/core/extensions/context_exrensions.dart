@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/translations/locale_keys.g.dart';
+import '../../translations/locale_keys.g.dart';
 import '../routes/routes.gr.dart';
 import '../theme/app_theme.dart';
 import '../theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import '../../extensions.dart';
@@ -56,10 +55,8 @@ extension ContextExtension on BuildContext {
       curve: Curves.fastOutSlowIn,
       duration: const Duration(seconds: 1),
       builder: (_) => AlertDialog(
-        // TODO Exit Dialoge Title
         title: Text('Are you  sure?'),
-        // TODO Exit Dialoge Body
-        content: new Text('Do you want to exit Mumblit'),
+        content: new Text('Do you want to exit Colibri'),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.of(this).pop(false),
@@ -206,16 +203,17 @@ extension ContextExtension on BuildContext {
   }
 
   initScreenUtil() => ScreenUtil.init(
-      BoxConstraints(
-        maxWidth: MediaQuery.of(this).size.width,
-        maxHeight: MediaQuery.of(this).size.height,
-      ),
-      designSize: getScreenSize);
+        BoxConstraints(
+          maxWidth: MediaQuery.of(this).size.width,
+          maxHeight: MediaQuery.of(this).size.height,
+        ),
+        designSize: getScreenSize,
+      );
 }
 
 snackBar(BuildContext context, String? text, bool isError) {
   Flushbar(
-    backgroundColor: isError ? Colors.purple : AppColors.colorPrimary,
+    backgroundColor: isError ? Colors.red : AppColors.colorPrimary,
     flushbarStyle: FlushbarStyle.GROUNDED,
     icon: Icon(
       isError ? Icons.error : Icons.done,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBarMenu extends StatefulWidget {
@@ -7,8 +6,7 @@ class CustomTabBarMenu extends StatefulWidget {
 }
 
 class _CustomTabBarMenuState extends State<CustomTabBarMenu>
-    with SingleTickerProviderStateMixin{
-
+    with SingleTickerProviderStateMixin {
   TabController? _controller;
 
   @override
@@ -18,27 +16,19 @@ class _CustomTabBarMenuState extends State<CustomTabBarMenu>
   }
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.0),
-                  border: const Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
-              child: TabBar(
-                  controller: _controller,
-                  tabs: [
-
-                  ]
-              )
-          ),
-          Container(
-              height: MediaQuery.of(context).size.height/2.3,
-              child: new TabBarView(
-                controller: _controller,
-                children: <Widget>[],
-              )
-          )
-        ]
-    );
+  Widget build(BuildContext context) =>
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+            decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.0),
+                border: const Border(
+                    bottom: BorderSide(color: Colors.grey, width: 0.8))),
+            child: TabBar(controller: _controller, tabs: [])),
+        Container(
+            height: MediaQuery.of(context).size.height / 2.3,
+            child: new TabBarView(
+              controller: _controller,
+              children: <Widget>[],
+            ))
+      ]);
 }

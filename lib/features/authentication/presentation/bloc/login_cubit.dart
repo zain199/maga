@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
+import 'sign_up_cubit.dart';
 import '../../../../core/common/stream_validators.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
 import '../../../../core/common/validators.dart';
@@ -30,14 +31,21 @@ class LoginCubit extends Cubit<CommonUIState> {
   final LoginUseCase? loginUseCase;
   final SocialLoginUseCase? socialLoginUseCase;
 
+  // UI STATE
+  bool isPasswordVisible = false;
   // constructor
   LoginCubit(this.localDataSource, this.loginUseCase, this.socialLoginUseCase)
       : super(const CommonUIState.initial()) {
     emailValidators =
         FieldValidators(validateEmail, passwordValidator.focusNode);
   }
+  void changePasswordVisibility() {
+    emit(const CommonUIState.initial());
+    isPasswordVisible = !isPasswordVisible;
+    emit(const CommonUIState.success(''));
+  }
 
-  loginUser(String email, String password) async {
+  void loginUser(String email, String password) async {
     // empty case
 
     emit(const CommonUIState.loading());
@@ -51,7 +59,7 @@ class LoginCubit extends Cubit<CommonUIState> {
         CommonUIState.error(l.errorMessage),
       ),
       (r) => emit(
-        CommonUIState.success(r),
+        CommonUIState.success(SuccessState.LOGIN_SUCCESS),
       ),
     );
   }

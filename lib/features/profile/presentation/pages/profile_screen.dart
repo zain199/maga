@@ -18,9 +18,7 @@ import '../bloc/user_likes/user_likes_cubit.dart';
 import '../bloc/user_media/user_media_cubit.dart';
 import '../bloc/user_posts/user_post_cubit.dart';
 import '../widgets/profile_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -71,6 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     context.initScreenUtil();
+
     return Scaffold(
       body: BlocProvider(
         create: (c) => _profileCubit!,
@@ -142,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     // title: Text('Profile'),
                     backgroundColor: Colors.white,
                     flexibleSpace: FlexibleSpaceBar(
-                      collapseMode: CollapseMode.parallax,
+                      collapseMode: CollapseMode.pin,
                       background: snapshot.data == null
                           ? Container()
                           : TopAppBar(
@@ -153,6 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                   widget.profileNavigationEnum,
                             ),
                     ),
+                    // posts,media,likes row
                     bottom: PreferredSize(
                       child: Stack(
                         children: [
@@ -355,16 +355,16 @@ class _ProfileScreenState extends State<ProfileScreen>
     /// in case of about is more than 40 chars we will increase height
     else if (data.about!.isNotEmpty) {
       if (data.about!.length <= 40)
-        return height * .56;
+        return height * .52;
       else if (data.about!.length <= 80)
-        return height * .58;
-      else if (data.about!.length <= 100) return height * .6;
-      return height * .63;
+        return height * .54;
+      else if (data.about!.length <= 100) return height * .56;
+      return height * .59;
     } else {
       if (data.website!.isNotEmpty) {
-        return height * .53;
+        return height * .47;
       } else
-        return height * .5;
+        return height * .46;
     }
   }
 }

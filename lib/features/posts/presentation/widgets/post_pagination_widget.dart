@@ -1,7 +1,5 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 // ignore_for_file: invalid_use_of_protected_member
-import 'dart:ffi';
-import 'dart:io';
 
 import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
@@ -11,17 +9,20 @@ import 'package:colibri/core/routes/routes.gr.dart';
 import 'package:colibri/core/theme/colors.dart';
 import 'package:colibri/core/widgets/error/first_page_error.dart';
 import 'package:colibri/features/feed/domain/entity/post_entity.dart';
+import 'package:colibri/features/feed/presentation/bloc/feed_cubit.dart';
+import 'package:colibri/features/feed/presentation/pages/redeem_confirmation_screen.dart';
+import 'package:colibri/features/feed/presentation/widgets/create_post_card.dart';
 import 'package:colibri/features/feed/presentation/widgets/feed_widgets.dart';
 import 'package:colibri/features/feed/presentation/widgets/no_data_found_screen.dart';
 import 'package:colibri/features/posts/presentation/pages/show_likes_screen.dart';
 import 'package:colibri/features/posts/presentation/pages/view_post_screen.dart';
 import 'package:colibri/features/posts/presentation/widgets/report_post_widget.dart';
 import 'package:colibri/features/profile/presentation/pages/profile_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:colibri/extensions.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 typedef ValueChangedWithTwoParam<T, R> = void Function(T value, R secondValue);
 
@@ -42,7 +43,6 @@ class PostPaginationWidget extends StatefulWidget {
   /// 2 [ListView]
   final bool isSliverList;
   final Widget? firstPageError;
-
   const PostPaginationWidget(
       {Key? key,
       required this.isComeHome,
@@ -56,54 +56,19 @@ class PostPaginationWidget extends StatefulWidget {
       this.isPrivateAccount,
       this.firstPageError})
       : super(key: key);
-
   @override
   _PostPaginationWidgetState createState() => _PostPaginationWidgetState();
 }
 
 class _PostPaginationWidgetState extends State<PostPaginationWidget> {
   String? userAuth;
-  BannerAd myNative = BannerAd(
-      adUnitId: 'ca-app-pub-4231261115880991/7499366671',
-      listener: BannerAdListener(),
-      request: AdRequest(),
-      size: AdSize(width: 300, height: 250));
-
-  @override
-  void initState() {
-    myNative.load();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) => widget.isSliverList
       ? PagedSliverList.separated(
           pagingController: widget.pagingController,
           builderDelegate: buildHome(),
-          separatorBuilder: (BuildContext context, int index) {
-            if (index % 10 == 0)
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(child: Text('Sponsored'),margin: EdgeInsets.only(left: 35),),
-                    SizedBox(height: 8,),
-                    Container(
-                      height: 250,
-                      child: Center(
-                        child: AdWidget(
-                          ad: myNative,
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-              );
-            return Container();
-          },
+          separatorBuilder: (BuildContext context, int index) => Container(),
         )
       : PagedListView(
           pagingController: widget.pagingController,
@@ -111,125 +76,131 @@ class _PostPaginationWidgetState extends State<PostPaginationWidget> {
 
   PagedChildBuilderDelegate<PostEntity?> buildHome() =>
       PagedChildBuilderDelegate<PostEntity?>(
-        firstPageErrorIndicatorBuilder: (c) {
-          widget.isPrivateAccount!(widget.pagingController.error ==
-              'This profile data is not available for viewing');
-          return widget.pagingController.error ==
-                  'This profile data is not available for viewing'
-              ? PrivacyProtectedErrorView()
-              : CustomFirstPageView(onTryAgain: () {
-                  widget.pagingController.refresh();
-                });
-        },
-        noItemsFoundIndicatorBuilder: (_) =>
-            widget.noDataFoundScreen ??
-            NoDataFoundScreen(
-              onTapButton: () {
-                context.router.root.push(CreatePostRoute());
-              },
-            ),
-        itemBuilder: (BuildContext context, PostEntity? item, int index) {
-          if (item!.isAdvertisement!)
-            return PromotedWidget(
-              postEntity: item,
-              onLikeTap: () => widget.onTapLike(index),
-              onTapRepost: () => widget.onTapRepost(index),
-              replyCountIncreased: (value) {
-                var currentItem = widget.pagingController.itemList![index]!;
-                widget.pagingController
-                  ..itemList![index] = currentItem.copyWith(
-                      commentCount: currentItem.commentCount!.inc.toString())
-                  ..notifyListeners();
-              },
-            );
-
-          return OpenContainer<PostEntity>(
-            openElevation: 0.0,
-            closedElevation: 0.0,
-            closedBuilder: (c, opencontainer) => PostItem(
-              isComeHome: widget.isComeHome,
-              postEntity: item,
-              onLikeTap: () {
-                widget.onTapLike(index);
-              },
-              onTapRepost: () {
-                widget.onTapRepost(index);
-              },
-              onPostOptionItem: (value) {
-                print("Value data ");
-                print("$value");
-                print("${value!.getOptionsEnum}");
-
-                FocusManager.instance.primaryFocus!.unfocus();
-                final getOptionsEnum = value.getOptionsEnum;
-                switch (getOptionsEnum) {
-                  case PostOptionsEnum.SHOW_LIKES:
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (c) => ShowLikeScreen(item.postId),
-                    );
-                    break;
-                  case PostOptionsEnum.REPORT:
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (_) => ReportPostWidget(
-                        item.postId,
+          firstPageErrorIndicatorBuilder: (c) {
+            widget.isPrivateAccount!(widget.pagingController.error ==
+                'This profile data is not available for viewing');
+            return widget.pagingController.error ==
+                    'This profile data is not available for viewing'
+                ? PrivacyProtectedErrorView()
+                : CustomFirstPageView(onTryAgain: () {
+                    widget.pagingController.refresh();
+                  });
+          },
+          noItemsFoundIndicatorBuilder: (_) =>
+              widget.noDataFoundScreen ??
+              NoDataFoundScreen(
+                onTapButton: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      opaque: true,
+                      pageBuilder: (BuildContext context, _, __) =>
+                          RedeemConfirmationScreen(
+                        backRefresh: () {
+                          BlocProvider.of<FeedCubit>(context).onRefresh();
+                          setState(() {});
+                        },
                       ),
-                    );
-                    break;
-                  case PostOptionsEnum.BOOKMARK:
-                    widget.onOptionItemTap(PostOptionsEnum.BOOKMARK, index);
-                    break;
-                  case PostOptionsEnum.DELETE:
-                    context.showDeleteDialog(onOkTap: () async {
-                      if (widget.isFromProfileSearch) {
-                        Future.delayed(Duration(microseconds: 100), () {
-                          context.router.root.pop();
-                          widget.pagingController.refresh();
-                        });
-                      }
-                      widget.onOptionItemTap(PostOptionsEnum.DELETE, index);
-                    });
-                    break;
-                }
-              },
-              detailedPost: true,
-              replyCountIncreased: (value) {
-                var currentItem = widget.pagingController.itemList![index]!;
-                widget.pagingController
-                  ..itemList![index] = currentItem.copyWith(
-                      commentCount: currentItem.commentCount!.inc.toString())
-                  ..notifyListeners();
-              },
-            ).toContainer().makeBottomBorder,
-            //
-
-            openBuilder: (c, cl) => InkWell(
-              onTap: () async {
-                context.router.root.push(
-                  ViewPostScreenRoute(
-                    threadID: item.threadID,
-                    postEntity: item,
-                  ),
-                );
-              },
-              //23769
-              child: ViewPostScreen(
-                postEntity: item,
-                threadID: item.threadID,
+                    ),
+                  );
+                },
               ),
-            ),
-            onClosed: (s) async {
-              var item = widget.pagingController.itemList![index];
-              if (item != s) {
-                widget.pagingController.itemList![index] = s;
-                widget.pagingController.notifyListeners();
-              }
-            },
-          );
-        },
-      );
+          itemBuilder: (BuildContext context, PostEntity? item, int index) {
+            final _feedCubit = BlocProvider.of<FeedCubit>(context);
+            if (item!.isAdvertisement!)
+              return PromotedWidget(
+                postEntity: item,
+                onLikeTap: () => widget.onTapLike(index),
+                onTapRepost: () => widget.onTapRepost(index),
+                replyCountIncreased: (value) {
+                  var currentItem = widget.pagingController.itemList![index]!;
+                  widget.pagingController
+                    ..itemList![index] = currentItem.copyWith(
+                        commentCount: currentItem.commentCount!.inc.toString())
+                    ..notifyListeners();
+                },
+              );
+            return VisibilityDetector(
+              key: ValueKey(item.postId),
+              onVisibilityChanged: (visibilityInfo) {
+                // if between 95% and 100% of the item is visible play video
+                final visiblePercentage = visibilityInfo.visibleFraction * 100;
+                bool isVideo = item.media.isNotEmpty &&
+                    item.media[0].mediaType == MediaTypeEnum.VIDEO;
+                bool isVisible = visiblePercentage > 50.0;
+                bool playVideo = isVideo && isVisible;
+                _feedCubit.changeVideoState(playVideo);
+              },
+              child: OpenContainer<PostEntity>(
+                openElevation: 0.0,
+                closedElevation: 0.0,
+                closedBuilder: (c, opencontainer) => PostItem(
+                  isComeHome: widget.isComeHome,
+                  postEntity: item,
+                  onLikeTap: () {
+                    widget.onTapLike(index);
+                  },
+                  onTapRepost: () {
+                    widget.onTapRepost(index);
+                  },
+                  onPostOptionItem: (value) {
+                    FocusManager.instance.primaryFocus!.unfocus();
+                    final getOptionsEnum = value!.getOptionsEnum;
+                    switch (getOptionsEnum) {
+                      case PostOptionsEnum.SHOW_LIKES:
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (c) => ShowLikeScreen(item.postId),
+                        );
+                        break;
+                      case PostOptionsEnum.REPORT:
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (_) => ReportPostWidget(
+                            item.postId,
+                          ),
+                        );
+                        break;
+                      case PostOptionsEnum.BOOKMARK:
+                        widget.onOptionItemTap(PostOptionsEnum.BOOKMARK, index);
+                        break;
+                      case PostOptionsEnum.DELETE:
+                        context.showDeleteDialog(onOkTap: () async {
+                          if (widget.isFromProfileSearch) {
+                            Future.delayed(Duration(microseconds: 100), () {
+                              context.router.root.pop();
+                              widget.pagingController.refresh();
+                            });
+                          }
+                          widget.onOptionItemTap(PostOptionsEnum.DELETE, index);
+                        });
+                        break;
+                    }
+                  },
+                  detailedPost: true,
+                  replyCountIncreased: (value) {
+                    var currentItem = widget.pagingController.itemList![index]!;
+                    widget.pagingController
+                      ..itemList![index] = currentItem.copyWith(
+                          commentCount:
+                              currentItem.commentCount!.inc.toString())
+                      ..notifyListeners();
+                  },
+                ).toContainer().makeBottomBorder, //
 
+                openBuilder: (c, cl) => ViewPostScreen(
+                  postEntity: item,
+                  threadID: item.threadID,
+                ),
+                onClosed: (s) async {
+                  var item = widget.pagingController.itemList![index];
+                  if (item != s) {
+                    widget.pagingController.itemList![index] = s;
+                    widget.pagingController.notifyListeners();
+                  }
+                },
+              ),
+            );
+          });
   @override
   void dispose() {
     super.dispose();

@@ -283,11 +283,16 @@ extension StringExtension on String {
         text: parseHtmlString(this),
         maxLines: maxLines,
         style: AppTheme.caption.copyWith(
-            fontSize: fontSize.toSp as double?,
-            color: color,
-            fontWeight: fontWeight,
-            fontFamily: "CeraPro"),
-        linkStyle: TextStyle(color: linkColor, fontFamily: "CeraPro"),
+          fontSize: fontSize.toSp as double?,
+          color: color,
+          fontWeight: fontWeight,
+          fontFamily: "CeraPro",
+        ),
+        linkStyle: TextStyle(
+          color: linkColor,
+          fontFamily: "CeraPro",
+          overflow: textOverflow,
+        ),
       );
 
   TextField toTextField({
@@ -300,6 +305,9 @@ extension StringExtension on String {
     TextEditingController? controller,
     TextInputAction? textInputAction,
     FocusNode? focusNode,
+    bool isPassword = false,
+    bool isPasswordVisible = false,
+    VoidCallback? onVisibilityTap,
   }) =>
       TextField(
         focusNode: focusNode,
@@ -313,16 +321,25 @@ extension StringExtension on String {
         onSubmitted: (value) {
           onSubmit!(value);
         },
+        obscureText: isPassword && !isPasswordVisible,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
               vertical: 12.toVertical as double,
               horizontal: 6.toHorizontal as double),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Colors.purple.withOpacity(.8)),
+            borderSide: BorderSide(width: 1, color: Colors.red.withOpacity(.8)),
           ),
+          suffixIcon: !isPassword
+              ? null
+              : GestureDetector(
+                  child: Icon(
+                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onTap: onVisibilityTap,
+                ),
           errorBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(width: .8, color: Colors.purple.withOpacity(.8)),
+                BorderSide(width: .8, color: Colors.red.withOpacity(.8)),
           ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(width: 1, color: AppColors.placeHolderColor),
@@ -335,7 +352,7 @@ extension StringExtension on String {
           labelStyle: AppTheme.caption.copyWith(
               fontWeight: FontWeight.w600, color: AppColors.placeHolderColor),
           errorStyle: AppTheme.caption
-              .copyWith(color: Colors.purple, fontWeight: FontWeight.w600),
+              .copyWith(color: Colors.red, fontWeight: FontWeight.w600),
           errorText: errorText,
         ),
       );

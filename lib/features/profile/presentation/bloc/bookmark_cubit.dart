@@ -16,7 +16,6 @@ import 'package:colibri/features/profile/domain/usecase/get_bookmarks_use_case.d
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:colibri/extensions.dart';
 part 'bookmark_state.dart';
 

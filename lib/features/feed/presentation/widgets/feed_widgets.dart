@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/features/feed/presentation/widgets/feed_interaction_row.dart';
-import 'package:colibri/features/feed/presentation/widgets/post_header_row.dart';
+import 'feed_interaction_row.dart';
+import 'post_header_row.dart';
 import 'package:share/share.dart';
 import 'poll_container.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -106,7 +106,15 @@ class _PostItemState extends State<PostItem> {
   }
 
   Widget _postItem({otherUser = false}) {
-    return Container(
+    return InkWell(
+      onTap: () {
+        context.router.root.push(
+          ViewPostScreenRoute(
+            threadID: widget.postEntity!.threadID,
+            postEntity: widget.postEntity,
+          ),
+        );
+      },
       child: Column(
         children: [
           widget.postEntity?.showRepostedText ?? false
@@ -259,7 +267,7 @@ class _PostItemState extends State<PostItem> {
                 bottom: 20,
               ),
               decoration: const BoxDecoration(
-                color: Colors.purple,
+                color: Color(0xff0e8df1),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -272,8 +280,8 @@ class _PostItemState extends State<PostItem> {
                     height: 6,
                     width: 37,
                     margin: EdgeInsets.only(bottom: 10),
-                    decoration:  BoxDecoration(
-                      color:  Colors.purple[900],
+                    decoration: const BoxDecoration(
+                      color: const Color(0xff0560b2),
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       ),
@@ -637,7 +645,7 @@ class _PostItemState extends State<PostItem> {
             child: currentIndex == index
                 ? Container(
                     decoration: const BoxDecoration(
-                      color: Colors.purple,
+                      color: Colors.blue,
                       shape: BoxShape.circle,
                     ),
                   )

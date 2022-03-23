@@ -13,7 +13,6 @@ import '../../../search/presentation/pagination/hashtag_pagination.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 part 'chat_state.dart';
 

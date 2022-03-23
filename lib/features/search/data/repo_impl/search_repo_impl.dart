@@ -1,20 +1,20 @@
 import 'dart:collection';
 
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/common/api/api_constants.dart';
 import '../../../../core/common/api/api_helper.dart';
 import '../../../../core/common/failure.dart';
 import '../../../../core/common/pagination/text_model_with_offset.dart';
-
+import '../../../../main.dart';
 import '../../../feed/domain/entity/post_entity.dart';
+import '../../domain/entity/hashtag_entity.dart';
+import '../../domain/entity/people_entity.dart';
+import '../../domain/repo/search_repo.dart';
 import '../models/hashtags_response.dart';
 import '../models/people_response.dart';
 import '../models/search_post_response.dart';
-import '../../domain/entity/people_entity.dart';
-import '../../domain/entity/hashtag_entity.dart';
-import '../../domain/repo/search_repo.dart';
-import '../../../../main.dart';
-import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
 
 @Injectable(as: SearchRepo)
 class SearchRepoImpl extends SearchRepo {

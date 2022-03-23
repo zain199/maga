@@ -8,7 +8,6 @@ import '../../../../core/widgets/slider.dart';
 import '../../../../extensions.dart';
 import '../../../feed/domain/entity/post_entity.dart';
 import '../../../feed/presentation/widgets/feed_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -43,7 +42,7 @@ class _ThreadedPostItemState extends State<ThreadedPostItem> {
               widget.postEntity!.profileUrl!
                   .toRoundNetworkImage(radius: 13)
                   .toFlexible(),
-              'test'.toText.toContainer(color: Colors.purple)
+              'test'.toText.toContainer(color: Colors.red)
             ],
           ),
           [

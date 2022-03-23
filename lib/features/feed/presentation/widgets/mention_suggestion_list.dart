@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:colibri/core/common/widget/common_divider.dart';
-import 'package:colibri/core/constants/appconstants.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/posts/presentation/bloc/createpost_cubit.dart';
-import 'package:colibri/features/search/domain/entity/people_entity.dart';
+import '../../../../core/common/widget/common_divider.dart';
+import '../../../../core/constants/appconstants.dart';
+import '../../../../extensions.dart';
+import '../../../posts/presentation/bloc/createpost_cubit.dart';
+import '../../../search/domain/entity/people_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 

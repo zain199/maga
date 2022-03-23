@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
-import 'package:colibri/translations/locale_keys.g.dart';
+import '../../../../../translations/locale_keys.g.dart';
 import 'package:flutter/widgets.dart';
 import '../../../../../core/common/api/api_constants.dart';
 import '../../../../../core/common/static_data/all_countries.dart';

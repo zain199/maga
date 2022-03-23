@@ -1,4 +1,4 @@
-import 'package:colibri/core/extensions/context_exrensions.dart';
+import '../../../../core/extensions/context_exrensions.dart';
 
 import '../../../../core/theme/colors.dart';
 import '../widgets/create_post_card.dart';

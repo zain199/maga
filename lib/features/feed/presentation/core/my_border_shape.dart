@@ -16,7 +16,7 @@ class MyBorderShape extends ShapeBorder {
         ..addRRect(
           RRect.fromRectAndRadius(
             rect,
-            Radius.circular(rect.height / 2.0),
+            Radius.circular(0),
           ),
         )
         ..close(),

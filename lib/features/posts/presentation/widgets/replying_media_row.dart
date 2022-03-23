@@ -1,10 +1,10 @@
-import 'package:colibri/core/common/media/media_data.dart';
-import 'package:colibri/core/extensions/context_exrensions.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/widgets/MediaOpener.dart';
-import 'package:colibri/core/widgets/thumbnail_widget.dart';
-import 'package:colibri/features/feed/presentation/widgets/create_post_card.dart';
-import 'package:colibri/features/posts/presentation/bloc/createpost_cubit.dart';
+import '../../../../core/common/media/media_data.dart';
+import '../../../../core/extensions/context_exrensions.dart';
+import '../../../../core/extensions/widget_extensions.dart';
+import '../../../../core/widgets/MediaOpener.dart';
+import '../../../../core/widgets/thumbnail_widget.dart';
+import '../../../feed/presentation/widgets/create_post_card.dart';
+import '../bloc/createpost_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

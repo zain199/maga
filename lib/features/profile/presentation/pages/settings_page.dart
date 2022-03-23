@@ -14,7 +14,6 @@ import '../../domain/entity/setting_entity.dart';
 import '../bloc/settings/user_setting_cubit.dart';
 import 'settings/update_user_settings.dart';
 import '../pagination/privacy_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -313,7 +312,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
 
       [
-        "Version 1.1.2".toCaption(fontWeight: FontWeight.w600),
+        "Version 1.1.4".toCaption(fontWeight: FontWeight.w600),
       ]
           .toColumn(
             mainAxisAlignment: MainAxisAlignment.center,

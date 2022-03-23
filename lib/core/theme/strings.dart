@@ -25,7 +25,7 @@ class Strings {
   static final password = LocaleKeys.password.tr();
   static final confirmPassword = LocaleKeys.confirm_the_password.tr();
   static final byClickingAgree = LocaleKeys.by_continuing_you_agree_to
-      .tr(namedArgs: {'@site_name@': 'Mumblit'});
+      .tr(namedArgs: {'@site_name@': 'Colibri'});
   static final termsOfUse = LocaleKeys.terms_of_use.tr();
   static final privacy = LocaleKeys.privacy_policy.tr();
   static final haveAlreadyAccount = LocaleKeys.already_have_an_account.tr();
@@ -34,12 +34,12 @@ class Strings {
   static final affiliatesStr = LocaleKeys.affiliates.tr();
   static final ads = LocaleKeys.active_ads.tr();
   static final forgotPassword = LocaleKeys.forgot_your_password.tr();
-  static final termsUrl = "https://www.Mumblit.com/terms_of_use";
-  static final privacyUrl = "https://www.Mumblit.com/privacy_policy";
-  static final aboutUs = "https://www.Mumblit.com/about_us";
-  static final cookiesPolicy = "https://www.Mumblit.com/cookies_policy";
-  static final affiliates = "https://www.Mumblit.com/affiliates";
-  static final adsShow = "https://www.Mumblit.com/ads";
+  static final termsUrl = "https://www.colibri-sm.ru/terms_of_use";
+  static final privacyUrl = "https://www.colibri-sm.ru/privacy_policy";
+  static final aboutUs = "https://www.colibri-sm.ru/about_us";
+  static final cookiesPolicy = "https://www.colibri-sm.ru/cookies_policy";
+  static final affiliates = "https://www.colibri-sm.ru/affiliates";
+  static final adsShow = "https://www.colibri-sm.ru/ads";
 
   static var giphyApiKey = 'FAbXVBBRFv47ENKctsjc0oz1fqdsq0Kl';
 

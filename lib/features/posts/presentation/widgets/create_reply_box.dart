@@ -1,15 +1,13 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
-import 'package:colibri/core/extensions/string_extensions.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/routes/routes.gr.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
-import 'package:colibri/features/feed/presentation/widgets/hashtag_suggestion_list.dart';
-import 'package:colibri/features/feed/presentation/widgets/mention_suggestion_list.dart';
-import 'package:colibri/features/posts/presentation/bloc/createpost_cubit.dart';
-import 'package:colibri/features/posts/presentation/widgets/reply_interaction_row.dart';
-import 'package:colibri/features/posts/presentation/widgets/replying_media_row.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../extensions.dart';
+import '../../../feed/domain/entity/post_entity.dart';
+import '../../../feed/presentation/widgets/hashtag_suggestion_list.dart';
+import '../../../feed/presentation/widgets/mention_suggestion_list.dart';
+import '../bloc/createpost_cubit.dart';
+import 'reply_interaction_row.dart';
+import 'replying_media_row.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/src/flutter/container.dart';
 

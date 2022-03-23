@@ -1,13 +1,12 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
-import 'package:colibri/core/constants/appconstants.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/routes/routes.gr.dart';
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/authentication/data/models/login_response.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
-import 'package:colibri/translations/locale_keys.g.dart';
+import '../../../../core/constants/appconstants.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../extensions.dart';
+import '../../../authentication/data/models/login_response.dart';
+import '../../domain/entity/post_entity.dart';
+import '../../../../translations/locale_keys.g.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -194,7 +193,7 @@ class PostHeaderRow extends StatelessWidget {
           bottom: 20,
         ),
         decoration: const BoxDecoration(
-          color: Colors.purple,
+          color: Color(0xff0e8df1),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
             topRight: Radius.circular(25),
@@ -207,8 +206,8 @@ class PostHeaderRow extends StatelessWidget {
               height: 6,
               width: 37,
               margin: EdgeInsets.only(bottom: 10),
-              decoration:  BoxDecoration(
-                color:  Colors.purple[900],
+              decoration: const BoxDecoration(
+                color: const Color(0xff0560b2),
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
                 ),

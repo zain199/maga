@@ -1,14 +1,13 @@
-import 'usecases/vote_poll_use_case.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../core/common/failure.dart';
 import '../../../core/common/media/media_data.dart';
 import '../../feed/data/models/request/post_request_model.dart';
-import '../data/model/response/post_detail_response.dart';
-import '../data/model/request/like_request_model.dart';
 import '../../search/domain/entity/people_entity.dart';
-import 'package:dartz/dartz.dart';
-
+import '../data/model/request/like_request_model.dart';
+import '../data/model/response/post_detail_response.dart';
 import 'entiity/media_entity.dart';
+import 'usecases/vote_poll_use_case.dart';
 
 abstract class PostRepo {
   Future<Either<Failure, dynamic>> likeUnlikePost(String postId);

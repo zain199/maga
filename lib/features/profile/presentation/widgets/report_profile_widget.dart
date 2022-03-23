@@ -8,9 +8,8 @@ import '../bloc/profile_cubit.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:smart_select/smart_select.dart';
+import 'package:awesome_select/awesome_select.dart';
 import '../../../../core/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import '../../../../extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -53,11 +52,12 @@ class _ReportProfileWidgetState extends State<ReportProfileWidget> {
         child: Builder(builder: (context) {
           return BlocConsumer<ProfileCubit, CommonUIState>(
             listener: (context, state) => state.maybeWhen(
-              orElse: () {},
+              orElse: () => null,
               error: (s) => context.showSnackBar(message: s.toString()),
               success: (s) {
                 Navigator.of(context).pop();
                 context.showSnackBar(message: s.toString());
+                return null;
               },
             ),
             builder: (context, state) => state.maybeWhen(
@@ -146,13 +146,13 @@ class _ReportProfileWidgetState extends State<ReportProfileWidget> {
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 1,
-                              color: Colors.purple.withOpacity(.8),
+                              color: Colors.red.withOpacity(.8),
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: .8,
-                              color: Colors.purple.withOpacity(.8),
+                              color: Colors.red.withOpacity(.8),
                             ),
                           ),
                           enabledBorder: const OutlineInputBorder(
@@ -173,7 +173,7 @@ class _ReportProfileWidgetState extends State<ReportProfileWidget> {
                               fontWeight: FontWeight.w600,
                               color: AppColors.placeHolderColor),
                           errorStyle: AppTheme.caption.copyWith(
-                            color: Colors.purple,
+                            color: Colors.red,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

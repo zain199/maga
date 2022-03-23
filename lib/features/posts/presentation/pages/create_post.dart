@@ -1,5 +1,5 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
+import '../../../feed/domain/entity/post_entity.dart';
 import '../../../../core/routes/routes.gr.dart';
 import 'package:flutter/services.dart';
 
@@ -8,7 +8,6 @@ import '../../../../core/theme/colors.dart';
 import '../../../feed/presentation/bloc/feed_cubit.dart';
 import '../../../feed/presentation/widgets/create_post_card.dart';
 import '../../domain/entiity/reply_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../extensions.dart';

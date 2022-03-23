@@ -175,30 +175,31 @@ extension TextFieldExtension on TextField {
     TextInputType? keyboardType,
   }) {
     return StreamBuilder<T>(
-        stream: validators.stream,
-        builder: (context, snapshot) {
-          print(snapshot.error);
-          return TextField(
-            keyboardType: keyboardType,
-            maxLength: this.maxLength,
-            maxLines: this.maxLines,
-            style: AppTheme.button.copyWith(fontWeight: FontWeight.w500),
-            obscureText: validators.obsecureTextBool,
-            focusNode: validators.focusNode,
-            textInputAction: validators.nextFocusNode == null
-                ? TextInputAction.done
-                : TextInputAction.next,
-            controller: validators.textController,
-            decoration: this.decoration!,
-            onChanged: validators.onChange,
-            inputFormatters: [LengthLimitingTextInputFormatter(this.maxLength)],
-            onSubmitted: (value) {
-              this.onSubmitted!(value);
-              if (validators.nextFocusNode != null)
-                FocusScope.of(context).requestFocus(validators.nextFocusNode);
-            },
-          );
-        });
+      stream: validators.stream,
+      builder: (context, snapshot) {
+        print(snapshot.error);
+        return TextField(
+          keyboardType: keyboardType,
+          maxLength: this.maxLength,
+          maxLines: this.maxLines,
+          style: AppTheme.button.copyWith(fontWeight: FontWeight.w500),
+          obscureText: validators.obsecureTextBool,
+          focusNode: validators.focusNode,
+          textInputAction: validators.nextFocusNode == null
+              ? TextInputAction.done
+              : TextInputAction.next,
+          controller: validators.textController,
+          decoration: this.decoration!,
+          onChanged: validators.onChange,
+          inputFormatters: [LengthLimitingTextInputFormatter(this.maxLength)],
+          onSubmitted: (value) {
+            this.onSubmitted!(value);
+            if (validators.nextFocusNode != null)
+              FocusScope.of(context).requestFocus(validators.nextFocusNode);
+          },
+        );
+      },
+    );
   }
 
   Widget toPostBuilder<T>({

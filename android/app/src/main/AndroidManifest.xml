@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mumblitsoc.app">
+    package="com.skycap.colibri">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -8,8 +8,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
     <application
-        android:name="io.flutter.app.FlutterApplication"
-        android:label="Mumblit"
+        android:label="Colibri"
         android:allowClearUserData="true"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
@@ -63,9 +62,6 @@
             android:value="2" />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4231261115880991~7055916252"/>
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=

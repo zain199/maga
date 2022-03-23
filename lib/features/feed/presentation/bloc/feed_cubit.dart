@@ -36,13 +36,16 @@ import 'package:colibri/extensions.dart';
 part 'feed_state.dart';
 
 @injectable
-class FeedCubit extends PostPaginatonCubit<PostEntity, CommonUIState> with PostInteractionMixin {
+class FeedCubit extends PostPaginatonCubit<PostEntity, CommonUIState>
+    with PostInteractionMixin {
   final currentPageController =
       BehaviorSubject<ScreenType>.seeded(const ScreenType.home());
-
   Function(ScreenType) get changeCurrentPage => currentPageController.sink.add;
-
   Stream<ScreenType> get currentPage => currentPageController.stream;
+
+  final videoPlayState = BehaviorSubject<bool>.seeded(false);
+  Function(bool) get changeVideoPlayState => videoPlayState.sink.add;
+  Stream<bool> get isVideoPlaying => videoPlayState.stream;
 
   final _feedListController = BehaviorSubject<List<PostEntity>>();
 
@@ -413,5 +416,9 @@ class FeedCubit extends PostPaginatonCubit<PostEntity, CommonUIState> with PostI
         ..itemList![index] = value.copyWith(
             repostCount: value.repostCount!.inc.toString(), isReposted: true);
     });
+  }
+
+  void changeVideoState(bool state) {
+    if (state != isVideoPlaying) changeVideoPlayState(state);
   }
 }

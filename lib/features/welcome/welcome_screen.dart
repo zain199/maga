@@ -4,9 +4,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/strings.dart';
 import '../../../../extensions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -17,6 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     context.initScreenUtil();
+
     return Material(
       child: [
         buildTopView(),

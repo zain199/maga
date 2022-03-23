@@ -1,20 +1,21 @@
 import 'dart:collection';
 
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/common/api/api_constants.dart';
 import '../../../../core/common/api/api_helper.dart';
 import '../../../../core/common/failure.dart';
 import '../../../../core/datasource/local_data_source.dart';
-import '../models/request/chat_request_model.dart';
-import '../models/request/messages_request_model.dart';
-import '../models/response/chats_response.dart';
-import '../models/response/messages_response.dart';
-import '../models/request/delete_chat_request_model.dart';
-import '../models/response/send_message_response.dart';
 import '../../domain/entity/chat_entity.dart';
 import '../../domain/entity/message_entity.dart';
 import '../../domain/repo/message_repo.dart';
-import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
+import '../models/request/chat_request_model.dart';
+import '../models/request/delete_chat_request_model.dart';
+import '../models/request/messages_request_model.dart';
+import '../models/response/chats_response.dart';
+import '../models/response/messages_response.dart';
+import '../models/response/send_message_response.dart';
 
 @Injectable(as: MessageRepo)
 class MessageRepoImpl extends MessageRepo {
@@ -38,14 +39,18 @@ class MessageRepoImpl extends MessageRepo {
 
   @override
   Future<Either<Failure, List<ChatEntity>>> getChats(
-      ChatRequestModel chatRequestModel) async {
-    final either = await apiHelper!.get(ApiConstants.getChatMessages,
-        queryParameters: HashMap.from({
+    ChatRequestModel chatRequestModel,
+  ) async {
+    final either = await apiHelper!.get(
+      ApiConstants.getChatMessages,
+      queryParameters: HashMap.from(
+        {
           "user_id": chatRequestModel.userId,
           "offset_up": chatRequestModel.offset,
           "page_size": ApiConstants.pageSize.toString(),
-          // "page_size":100,
-        }));
+        },
+      ),
+    );
     return either.fold((l) => left(l), (r) {
       final chatsResponse = ChatsResponse.fromJson(r.data);
       return right(
@@ -62,7 +67,9 @@ class MessageRepoImpl extends MessageRepo {
         model.mediaUrl!.isNotEmpty ? await model.toMapWithImage() : model.toMap;
     var either = await apiHelper!.post(ApiConstants.sendMessage, map);
     return either.fold(
-        (l) => left(l), (r) => right(SendMessageResponse.fromJson(r.data)));
+      (l) => left(l),
+      (r) => right(SendMessageResponse.fromJson(r.data)),
+    );
   }
 
   @override

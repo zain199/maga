@@ -1,19 +1,17 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:better_player/better_player.dart';
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:colibri/core/extensions/color_extension.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/features/feed/presentation/widgets/interaction_row.dart';
+import 'media/media_slider.dart';
 import '../common/add_thumbnail/check_link.dart';
 import '../common/add_thumbnail/web_link_show.dart';
 import '../common/add_thumbnail/youtube_thumbnil.dart';
 import '../theme/colors.dart';
 import 'MediaOpener.dart';
+import 'media/media_page_builder.dart';
 import 'thumbnail_widget.dart';
 import '../../features/feed/domain/entity/post_entity.dart';
 import '../../features/feed/domain/entity/post_media.dart';
 import '../../features/feed/presentation/widgets/create_post_card.dart';
-import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import '../../extensions.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -49,13 +47,11 @@ class CustomSlider extends StatefulWidget {
 
 class _CustomSliderState extends State<CustomSlider> {
   int _current = 0;
-  PageController? pageController;
+  late PageController pageController;
 
   final ValueNotifier<int> _pageNotifier = new ValueNotifier<int>(0);
   PageController _pageController = PageController();
-
-  PageController? _pageControllerClick;
-  int currentPage = 0;
+  late PageController _pageControllerClick;
 
   @override
   void initState() {
@@ -63,11 +59,19 @@ class _CustomSliderState extends State<CustomSlider> {
 
     _current = widget.currentIndex;
     pageController = PageController(initialPage: widget.currentIndex);
-    _pageControllerClick = PageController(initialPage: currentPage);
+    _pageControllerClick = PageController(initialPage: 0);
 
     if (widget.mediaItems != null && widget.mediaItems!.length != 0) {
       print(widget.mediaItems![0].mediaType == MediaTypeEnum.IMAGE);
     }
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    _pageController.dispose();
+    _pageControllerClick.dispose();
+    super.dispose();
   }
 
   @override
@@ -174,13 +178,13 @@ class _CustomSliderState extends State<CustomSlider> {
         height: 100,
         width: 300,
         child: Text("No Youtube data found",
-            style: TextStyle(color: Colors.purpleAccent)),
+            style: TextStyle(color: Colors.blueAccent)),
       );
     } else if (linkGet.contains("https://") || linkGet.contains("www.")) {
       print('qwd');
       return SimpleUrlPreviewWeb(
         url: CheckLink.checkYouTubeLink(linkGet),
-        bgColor: Colors.purple,
+        bgColor: Colors.red,
         isClosable: false,
         previewHeight: 180,
         homePagePostCreate: false,
@@ -328,32 +332,52 @@ class _CustomSliderState extends State<CustomSlider> {
                 return const CircularProgressIndicator()
                     .toPadding(8)
                     .toCenter();
-              })).toHorizontalPadding(0).onTapWidget(() {
-        if (!widget.dialogView) showMediaSlider(itemIndex, length);
-      });
+              })).toHorizontalPadding(0).onTapWidget(
+        () {
+          if (!widget.dialogView)
+            Navigator.of(context).push(
+              MediaPageBuilder(
+                MediaSlider(
+                  postEntity: widget.postEntity,
+                  onClickAction: widget.onClickAction,
+                  length: length,
+                  mediaType: widget.mediaItems![itemIndex].mediaType!,
+                  url: widget.mediaItems![itemIndex].url!,
+                  pageControllerClick: _pageControllerClick,
+                  startDuration: Duration(seconds: 0),
+                ),
+              ),
+            );
+        },
+      );
     } else if (widget.mediaItems![itemIndex].mediaType == MediaTypeEnum.VIDEO) {
       GlobalKey<MyVideoPlayerState> videoKey = GlobalKey();
       return ClipRRect(
         borderRadius: BorderRadius.circular(35),
         child: MyVideoPlayer(
-            withAppBar: false,
-            key: videoKey,
-            path: widget.mediaItems![itemIndex].url),
-      ).onTapWidget(() {
-        videoKey.currentState!.pause();
-        showAnimatedDialog(
+          withAppBar: false,
+          key: videoKey,
+          path: widget.mediaItems![itemIndex].url,
+        ),
+      ).onTapWidget(
+        () {
+          videoKey.currentState!.pause();
+          showAnimatedDialog(
             barrierDismissible: true,
             context: context,
             builder: (c) => MyVideoPlayer(
-                path: widget.mediaItems![itemIndex].url,
-                withAppBar: false,
-                fullVideoControls: true));
-      });
+              path: widget.mediaItems![itemIndex].url,
+              withAppBar: false,
+              fullVideoControls: true,
+            ),
+          );
+        },
+      );
     } else if (widget.mediaItems![itemIndex].mediaType == MediaTypeEnum.GIF) {
       return GiphyWidget(
         path: widget.mediaItems![itemIndex].url,
         enableClose: false,
-      ).toContainer(color: Colors.purple);
+      ).toContainer(color: Colors.red);
     } else if (widget.mediaItems![itemIndex].mediaType == MediaTypeEnum.EMOJI) {
       return GiphyWidget(
         path: widget.mediaItems![itemIndex].url,
@@ -362,117 +386,6 @@ class _CustomSliderState extends State<CustomSlider> {
           width: double.infinity,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)));
     }
-  }
-
-  Widget getListView() {
-    return ExpandablePageView(
-      children: List<Widget>.generate(
-        widget.mediaItems!.length,
-        (itemIndex) {
-          switch (widget.mediaItems![itemIndex].mediaType) {
-            case MediaTypeEnum.IMAGE:
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(35),
-                child: CachedNetworkImage(
-                  imageUrl: widget.mediaItems![itemIndex].url!,
-                  width: context.getScreenWidth as double?,
-                  height: 180,
-                  fit: BoxFit.cover,
-                  progressIndicatorBuilder: (_, ___, progress) {
-                    Vx.teal100;
-                    return const CircularProgressIndicator()
-                        .toPadding(8)
-                        .toCenter();
-                  },
-                ),
-              ).toHorizontalPadding(4).onTapWidget(
-                () {
-                  if (!widget.dialogView)
-                    showAnimatedDialog(
-                        alignment: Alignment.center,
-                        context: context,
-                        builder: (c) => Column(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Stack(
-                                  // fit: StackFit.passthrough,
-                                  children: [
-                                    CustomSlider(
-                                      mediaItems: widget.mediaItems,
-                                      dialogView: true,
-                                      currentIndex: _current,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topRight,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.black54,
-                                          child: CloseButton(
-                                            color: Colors.white,
-                                            onPressed: () {
-                                              context.router.root.pop();
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )
-                                .makeScrollable()
-                                .toContainer(
-                                    height: context.getScreenHeight as double,
-                                    alignment: Alignment.center)
-                                .toSafeArea,
-                        barrierDismissible: true);
-                },
-              );
-
-            case MediaTypeEnum.VIDEO:
-              GlobalKey<MyVideoPlayerState> videoKey = GlobalKey();
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: MyVideoPlayer(
-                  withAppBar: false,
-                  key: videoKey,
-                  path: widget.mediaItems![itemIndex].url,
-                ),
-              ).onTapWidget(
-                () {
-                  videoKey.currentState!.pause();
-                  showAnimatedDialog(
-                      barrierDismissible: true,
-                      context: context,
-                      builder: (c) => MyVideoPlayer(
-                          path: widget.mediaItems![itemIndex].url,
-                          withAppBar: false,
-                          fullVideoControls: true));
-                },
-              );
-
-            case MediaTypeEnum.GIF:
-              return GiphyWidget(
-                path: widget.mediaItems![itemIndex].url,
-                enableClose: false,
-              ).toContainer(color: Colors.purple);
-            case MediaTypeEnum.EMOJI:
-              return GiphyWidget(
-                path: widget.mediaItems![itemIndex].url,
-              ).toContainer(
-                  height: 150,
-                  width: double.infinity,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(8)));
-
-            default:
-              return Container();
-          }
-        },
-      ),
-      controller: pageController,
-    );
   }
 
   gridData(int itemIndex, int length) {
@@ -498,7 +411,20 @@ class _CustomSliderState extends State<CustomSlider> {
             _pageControllerClick = PageController(initialPage: itemIndex);
 
             setState(() {});
-            if (!widget.dialogView) showMediaSlider(itemIndex, length);
+            if (!widget.dialogView)
+              Navigator.of(context).push(
+                MediaPageBuilder(
+                  MediaSlider(
+                    postEntity: widget.postEntity,
+                    onClickAction: widget.onClickAction,
+                    length: length,
+                    mediaType: widget.mediaItems![itemIndex].mediaType!,
+                    url: widget.mediaItems![itemIndex].url!,
+                    pageControllerClick: _pageControllerClick,
+                    startDuration: Duration(seconds: 0),
+                  ),
+                ),
+              );
           },
         );
       } else if (widget.mediaItems![itemIndex].mediaType ==
@@ -513,8 +439,21 @@ class _CustomSliderState extends State<CustomSlider> {
             isComeHome: widget.isComeHome,
           ).onTapWidget(
             () {
+              Duration _startDuration = videoKey.currentState!.videoTimePlayed;
               videoKey.currentState!.pause();
-              showMediaSlider(itemIndex, length);
+              Navigator.of(context).push(
+                MediaPageBuilder(
+                  MediaSlider(
+                    postEntity: widget.postEntity,
+                    onClickAction: widget.onClickAction,
+                    length: length,
+                    mediaType: widget.mediaItems![itemIndex].mediaType!,
+                    url: widget.mediaItems![itemIndex].url!,
+                    pageControllerClick: _pageControllerClick,
+                    startDuration: _startDuration,
+                  ),
+                ),
+              );
             },
           ),
         );
@@ -524,7 +463,7 @@ class _CustomSliderState extends State<CustomSlider> {
           enableClose: false,
           itemIndex: itemIndex,
           length: length,
-        ).toContainer(color: Colors.purple);
+        ).toContainer(color: Colors.red);
       } else if (widget.mediaItems![itemIndex].mediaType ==
           MediaTypeEnum.EMOJI) {
         return GiphyWidget(
@@ -576,104 +515,6 @@ class _CustomSliderState extends State<CustomSlider> {
     }
   }
 
-  showMediaSlider(int itemIndex, int? length) {
-    GlobalKey<MyVideoPlayerState> videoAlertKey = GlobalKey();
-    videoAlertKey.currentState?.isPlaying = false;
-
-    bool isArrowShow = true;
-    bool isVideoPlay = true;
-
-    return showAnimatedDialog(
-      context: context,
-      builder: (c) => StatefulBuilder(
-        builder: (context, setState) {
-          return InkWell(
-            onTap: () {
-              if (widget.mediaItems![itemIndex].mediaType ==
-                  MediaTypeEnum.IMAGE) {
-                isArrowShow = !isArrowShow;
-                setState(() {});
-              } else {
-                isVideoPlay = !isVideoPlay;
-                setState(() {});
-              }
-            },
-            child: Container(
-              color: HexColor.fromHex('#24282E').withOpacity(1),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  closeButton(),
-                  Expanded(
-                    child: PageView.builder(
-                      itemCount: length ?? 0,
-                      controller: _pageControllerClick,
-                      onPageChanged: (int index) {
-                        currentPage = index;
-                        setState(() {});
-                      },
-                      itemBuilder: (context, index) {
-                        return widget.mediaItems![itemIndex].mediaType ==
-                                MediaTypeEnum.VIDEO
-                            ? videoSlider(itemIndex)
-                            : imageSlider(index);
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  InteractionRow(
-                    onClickAction: widget.onClickAction!,
-                    postEntity: widget.postEntity!,
-                    setStateFun: () => setState(() {}),
-                  ),
-                  SizedBox(
-                    height: context.getScreenHeight * .1,
-                  )
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget imageSlider(int index) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: context.getScreenHeight * .7,
-      ),
-      child: CachedNetworkImage(
-        imageUrl: widget.mediaItems![index].url!,
-        fit: BoxFit.scaleDown,
-        progressIndicatorBuilder: (_, __, progress) {
-          Vx.teal100;
-          return const CircularProgressIndicator().toPadding(8).toCenter();
-        },
-      ),
-    );
-  }
-
-  Widget videoSlider(int itemIndex) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AspectRatio(
-          aspectRatio: 16 / 9,
-          child: BetterPlayer.network(
-            widget.mediaItems![itemIndex].url!,
-            betterPlayerConfiguration: BetterPlayerConfiguration(
-              fit: BoxFit.fitHeight,
-              aspectRatio: 16 / 9,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   imageNotShow() {
     return Container(
       height: 130,
@@ -712,40 +553,34 @@ class _CustomSliderState extends State<CustomSlider> {
               maxLines: 2),
           const SizedBox(height: 5),
           Text(
-              CheckLink.removeHtmlTag(widget.postEntity?.ogData["url"]) ??
-                  "Page link not found!",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 15,
-                fontFamily: "CeraPro",
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              maxLines: 2),
+            CheckLink.removeHtmlTag(widget.postEntity?.ogData["url"]) ??
+                "Page link not found!",
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15,
+              fontFamily: "CeraPro",
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            maxLines: 2,
+          ),
         ],
       ),
     );
   }
 
-  Widget closeButton() {
-    return SafeArea(
-      child: Align(
-        alignment: Alignment.topRight,
-        child: InkWell(
-          onTap: () {
-            context.router.root.pop();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Images.closeButton.toSvg(
-              color: Colors.white,
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ),
-      ),
-    );
+  /// convert from string to duration
+  Duration parseDuration(String s) {
+    int hours = 0;
+    int minutes = 0;
+    int micros;
+    List<String> parts = s.split(':');
+    if (parts.length > 2) {
+      hours = int.parse(parts[parts.length - 3]);
+    }
+    if (parts.length > 1) {
+      minutes = int.parse(parts[parts.length - 2]);
+    }
+    micros = (double.parse(parts[parts.length - 1]) * 1000000).round();
+    return Duration(hours: hours, minutes: minutes, microseconds: micros);
   }
-
-
 }

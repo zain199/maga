@@ -13,7 +13,6 @@ import '../../domain/usecases/add_remove_bookmark_use_case.dart';
 import '../../domain/usecases/delete_post_use_case.dart';
 import '../../domain/usecases/get_threaded_post_use_case.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../extensions.dart';
 part 'view_post_state.dart';

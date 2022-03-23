@@ -216,8 +216,7 @@ class PushNotificationHelper {
     final AndroidNotificationDetails androidPlatformChannelSpecifics =
         const AndroidNotificationDetails(
       '0',
-      'Mumblit',
-      'your channel description',
+      'colibri',
       importance: Importance.max,
       priority: Priority.high,
       showWhen: true,

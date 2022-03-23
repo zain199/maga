@@ -1,13 +1,14 @@
 import 'dart:collection';
 
-import 'api_constants.dart';
-import '../failure.dart';
-import '../../datasource/local_data_source.dart';
-import '../../di/injection.dart';
-import '../../../features/authentication/data/models/login_response.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../features/authentication/data/models/login_response.dart';
+import '../../datasource/local_data_source.dart';
+import '../../di/injection.dart';
+import '../failure.dart';
+import 'api_constants.dart';
 
 @injectable
 class ApiHelper {
@@ -72,9 +73,11 @@ class ApiHelper {
     Map<String, dynamic>? queryParameters,
   }) async =>
       safeApiHelperRequest(
-        () => dio!.get(path,
-            options: Options(headers: headers),
-            queryParameters: queryParameters),
+        () => dio!.get(
+          path,
+          options: Options(headers: headers),
+          queryParameters: queryParameters,
+        ),
       );
 
   Future<Either<Failure, Response>> put<T>(
@@ -112,33 +115,31 @@ class ApiHelper {
 
   String _handleError(DioError error) {
     String errorDescription = "";
-    if (error is DioError) {
-      DioError dioError = error;
-      switch (dioError.type) {
-        case DioErrorType.connectTimeout:
-          errorDescription = "Connection timeout with API server";
-          break;
-        case DioErrorType.sendTimeout:
-          errorDescription = "Send timeout in connection with API server";
-          break;
-        case DioErrorType.receiveTimeout:
-          errorDescription = "Receive timeout in connection with API server";
-          break;
-        case DioErrorType.response:
-          errorDescription =
-              "Received invalid status code: ${dioError.response!.statusCode}";
-          break;
-        case DioErrorType.cancel:
-          errorDescription = "Request to API server was cancelled";
-          break;
-        case DioErrorType.other:
-          errorDescription =
-              "Connection to API server failed due to internet connection";
-          break;
-      }
-    } else {
-      errorDescription = "Unexpected error occured";
+
+    DioError dioError = error;
+    switch (dioError.type) {
+      case DioErrorType.connectTimeout:
+        errorDescription = "Connection timeout with API server";
+        break;
+      case DioErrorType.sendTimeout:
+        errorDescription = "Send timeout in connection with API server";
+        break;
+      case DioErrorType.receiveTimeout:
+        errorDescription = "Receive timeout in connection with API server";
+        break;
+      case DioErrorType.response:
+        errorDescription =
+            "Received invalid status code: ${dioError.response!.statusCode}";
+        break;
+      case DioErrorType.cancel:
+        errorDescription = "Request to API server was cancelled";
+        break;
+      case DioErrorType.other:
+        errorDescription =
+            "Connection to API server failed due to internet connection";
+        break;
     }
+
     return errorDescription;
   }
 }

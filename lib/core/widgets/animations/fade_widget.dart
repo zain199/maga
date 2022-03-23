@@ -9,7 +9,7 @@ class CustomAnimatedWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller =
-        useAnimationController(duration: const Duration(milliseconds: 800))
+        useAnimationController(duration: const Duration(milliseconds: 200))
           ..forward();
     return child!.toSlideAnimation(controller);
   }

@@ -2,7 +2,6 @@ import 'package:auto_route/src/router/auto_router_x.dart';
 import '../../../../core/routes/routes.gr.dart';
 
 import '../../../../core/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../extensions.dart';
 
@@ -52,7 +51,7 @@ class NoDataFoundScreen extends StatelessWidget {
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0),
                 side: const BorderSide(
-                  color: Colors.purple,
+                  color: Colors.red,
                   width: 10,
                 ),
               ),

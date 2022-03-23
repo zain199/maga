@@ -1,6 +1,6 @@
-import 'package:colibri/core/theme/app_theme.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/extensions.dart';
+import '../../../../../core/theme/app_theme.dart';
+import '../../../../../core/theme/colors.dart';
+import '../../../../../extensions.dart';
 import 'package:flutter/material.dart';
 
 class ViewSwiftCircle extends StatelessWidget {

@@ -1,3 +1,5 @@
+import 'package:awesome_select/awesome_select.dart';
+
 import '../../../../core/common/buttons/custom_button.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
 import '../../../../core/di/injection.dart';
@@ -9,10 +11,8 @@ import '../../../feed/presentation/bloc/feed_cubit.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/extensions/string_extensions.dart';
 import '../../../../extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:smart_select/smart_select.dart';
 
 class ReportPostWidget extends StatefulWidget {
   const ReportPostWidget(this.postId, {Key? key}) : super(key: key);
@@ -55,11 +55,13 @@ class _ReportPostWidgetState extends State<ReportPostWidget> {
         child: Builder(builder: (context) {
           return BlocConsumer<FeedCubit, CommonUIState>(
             listener: (context, state) => state.maybeWhen(
-              orElse: () {},
+              orElse: () => null,
               error: (s) => context.showSnackBar(message: s.toString()),
               success: (s) {
                 Navigator.pop(context);
                 context.showSnackBar(message: s.toString());
+                // TODO check if null does not break the app
+                return null;
               },
             ),
             builder: (context, state) => state.maybeWhen(
@@ -148,13 +150,13 @@ class _ReportPostWidgetState extends State<ReportPostWidget> {
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 1,
-                              color: Colors.purple.withOpacity(.8),
+                              color: Colors.red.withOpacity(.8),
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: .8,
-                              color: Colors.purple.withOpacity(.8),
+                              color: Colors.red.withOpacity(.8),
                             ),
                           ),
                           enabledBorder: const OutlineInputBorder(
@@ -175,7 +177,7 @@ class _ReportPostWidgetState extends State<ReportPostWidget> {
                               fontWeight: FontWeight.w600,
                               color: AppColors.placeHolderColor),
                           errorStyle: AppTheme.caption.copyWith(
-                            color: Colors.purple,
+                            color: Colors.red,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

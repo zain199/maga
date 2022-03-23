@@ -5,10 +5,9 @@ import '../../../../core/theme/colors.dart';
 import '../../domain/entity/setting_entity.dart';
 import '../bloc/settings/user_setting_cubit.dart';
 import '../pages/settings_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_select/smart_select.dart';
+import 'package:awesome_select/awesome_select.dart';
 import '../../../../extensions.dart';
 
 class PrivacyScreen extends StatefulWidget {

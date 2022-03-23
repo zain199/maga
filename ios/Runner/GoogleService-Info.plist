@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>446571587095-ltbv63qcjuns48j6rt8agk5mbp98qq7d.apps.googleusercontent.com</string>
+	<string>343267882113-mvb0iiirinapna57cm20udl8gvdg2qt7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.446571587095-ltbv63qcjuns48j6rt8agk5mbp98qq7d</string>
+	<string>com.googleusercontent.apps.343267882113-mvb0iiirinapna57cm20udl8gvdg2qt7</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>446571587095-qtuvck13snrt0obosk51oa5evllefjem.apps.googleusercontent.com</string>
+	<string>343267882113-g7vhns7a36bl4lq6auluvvmmhnbm0r56.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyARt6_4fSSpezUtWZEYGdVC8mRVn0hgRP0</string>
+	<string>AIzaSyDw6YFA9qTuI2zZm1vbI5whyZQ6yiZjV3s</string>
 	<key>GCM_SENDER_ID</key>
-	<string>446571587095</string>
+	<string>343267882113</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mumblitsoc.app</string>
+	<string>com.skycap.colibriApp</string>
 	<key>PROJECT_ID</key>
-	<string>nicolas-2ce7b</string>
+	<string>colibri-f9bfc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nicolas-2ce7b.appspot.com</string>
+	<string>colibri-f9bfc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:446571587095:ios:065d551a2d664e68c0de52</string>
+	<string>1:343267882113:ios:2e5a1398263f9219f90980</string>
 </dict>
 </plist>

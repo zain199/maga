@@ -1,3 +1,6 @@
+import 'package:colibri/core/extensions/context_exrensions.dart';
+import 'package:colibri/core/extensions/string_extensions.dart';
+
 import '../../../../translations/locale_keys.g.dart';
 
 import '../../../../core/theme/app_icons.dart';
@@ -12,7 +15,6 @@ import '../bloc/notification_cubit.dart';
 import '../widgets/notification_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../extensions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -36,105 +38,124 @@ class _NotificationPageState extends State<NotificationPage> {
       create: (_) => _notificationCubit,
       child: Stack(
         children: [
+          Column(
+            children: [
+              StreamBuilder<Set<int>>(
+                initialData: Set(),
+                stream: _notificationCubit.notificationPagination!.deletedItems,
+                builder: (context, snapshot) {
+                  return SlideBottomWidget(
+                    doForward: snapshot.data!.isNotEmpty,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      height: snapshot.data!.isEmpty ? 0 : 60,
+                    ),
+                  );
+                },
+              ),
+              Expanded(
+                child: StreamBuilder<Set<int>>(
+                  initialData: Set(),
+                  stream:
+                      _notificationCubit.notificationPagination!.deletedItems,
+                  builder: (context, snapshot) {
+                    return RefreshIndicator(
+                      onRefresh: () {
+                        _notificationCubit.notificationPagination!.onRefresh();
+                        return Future.value();
+                      },
+                      child: PagedListView(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        pagingController: _notificationCubit
+                            .notificationPagination!.pagingController,
+                        builderDelegate:
+                            PagedChildBuilderDelegate<NotificationEntity>(
+                          noItemsFoundIndicatorBuilder: (_) =>
+                              NoDataFoundScreen(
+                            title: LocaleKeys.no_notifications_yet.tr(),
+                            buttonText: LocaleKeys.go_to_the_homepage.tr(),
+                            message: LocaleKeys
+                                .there_seems_to_be_you_have_no_notifications_yet_all_notifications
+                                .tr(),
+                            icon: const Icon(
+                              FontAwesomeIcons.bell,
+                              size: 40,
+                              color: AppColors.colorPrimary,
+                            ),
+                            onTapButton: () {
+                              BlocProvider.of<FeedCubit>(context)
+                                  .changeCurrentPage(const ScreenType.home());
+                              // ExtendedNavigator.root.push(Routes.createPost);
+                            },
+                          ),
+                          itemBuilder: (_, item, index) => CustomAnimatedWidget(
+                            child: NotificationItem(
+                              notificationEntity: item,
+                              onChanged: (v) {
+                                if (v!)
+                                  _notificationCubit.notificationPagination!
+                                      .addDeletedItem(
+                                    index,
+                                  ); // Add to to be deleted list
+                                else
+                                  _notificationCubit.notificationPagination!
+                                      .deleteSelectedItem(
+                                    index,
+                                  ); // delete from to be deleted list
+                              },
+                              isSelected:
+                                  snapshot.data!.toList().contains(index),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
           StreamBuilder<Set<int>>(
             initialData: Set(),
             stream: _notificationCubit.notificationPagination!.deletedItems,
             builder: (context, snapshot) {
-              return RefreshIndicator(
-                onRefresh: () {
-                  _notificationCubit.notificationPagination!.onRefresh();
-                  return Future.value();
-                },
-                child: PagedListView(
-                  padding: const EdgeInsets.only(bottom: 80),
-                  pagingController: _notificationCubit
-                      .notificationPagination!.pagingController,
-                  builderDelegate:
-                      PagedChildBuilderDelegate<NotificationEntity>(
-                    noItemsFoundIndicatorBuilder: (_) => NoDataFoundScreen(
-                      title: LocaleKeys.no_notifications_yet.tr(),
-                      buttonText: LocaleKeys.go_to_the_homepage.tr(),
-                      message: LocaleKeys
-                          .there_seems_to_be_you_have_no_notifications_yet_all_notifications
-                          .tr(),
-                      icon: const Icon(
-                        FontAwesomeIcons.bell,
-                        size: 40,
-                        color: AppColors.colorPrimary,
-                      ),
-                      onTapButton: () {
-                        BlocProvider.of<FeedCubit>(context)
-                            .changeCurrentPage(const ScreenType.home());
-                        // ExtendedNavigator.root.push(Routes.createPost);
+              return SlideBottomWidget(
+                doForward: snapshot.data!.isNotEmpty,
+                child: Material(
+                  elevation: 1.0,
+                  child: ListTile(
+                    title: StreamBuilder<Set<int>>(
+                      initialData: Set(),
+                      stream: _notificationCubit
+                          .notificationPagination!.deletedItems,
+                      builder: (context, snapshot) {
+                        return "${LocaleKeys.delete_selected.tr()} (${snapshot.data!.length})"
+                            .toSubTitle2(fontWeight: FontWeight.w600);
                       },
                     ),
-                    itemBuilder: (_, item, index) => CustomAnimatedWidget(
-                      child: NotificationItem(
-                        notificationEntity: item,
-                        onChanged: (v) {
-                          if (v!)
-                            _notificationCubit.notificationPagination!
-                                .addDeletedItem(
-                              index,
-                            ); // Add to to be deleted list
-                          else
-                            _notificationCubit.notificationPagination!
-                                .deleteSelectedItem(
-                              index,
-                            ); // delete from to be deleted list
-                        },
-                        isSelected: snapshot.data!.toList().contains(index),
-                      ),
+                    trailing: AppIcons.deleteOption(
+                      color: Colors.black,
+                      height: 20,
+                      width: 20,
                     ),
+                    tileColor: Colors.white,
+                    onTap: () {
+                      context.showOkCancelAlertDialog(
+                        desc:
+                            "Are you sure you want to delete the selected notifications? Please note that this action cannot be undone!",
+                        title: LocaleKeys.please_confirm_your_actions.tr(),
+                        okButtonTitle: LocaleKeys.delete.tr(),
+                        onTapOk: () {
+                          Navigator.of(context).pop();
+                          _notificationCubit.notificationPagination!
+                              .deleteNotification();
+                        },
+                      );
+                    },
                   ),
                 ),
               );
             },
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: StreamBuilder<Set<int>>(
-              initialData: Set(),
-              stream: _notificationCubit.notificationPagination!.deletedItems,
-              builder: (context, snapshot) {
-                return SlideBottomWidget(
-                  doForward: snapshot.data!.isNotEmpty,
-                  child: Material(
-                    elevation: 10.0,
-                    child: ListTile(
-                      title: StreamBuilder<Set<int>>(
-                        initialData: Set(),
-                        stream: _notificationCubit
-                            .notificationPagination!.deletedItems,
-                        builder: (context, snapshot) {
-                          return "${LocaleKeys.delete_selected.tr()} (${snapshot.data!.length})"
-                              .toSubTitle2(fontWeight: FontWeight.w600);
-                        },
-                      ),
-                      trailing: AppIcons.deleteOption(
-                        color: Colors.black,
-                        height: 20,
-                        width: 20,
-                      ),
-                      tileColor: Colors.white,
-                      onTap: () {
-                        context.showOkCancelAlertDialog(
-                          desc:
-                              "Are you sure you want to delete the selected notifications? Please note that this action cannot be undone!",
-                          title: LocaleKeys.please_confirm_your_actions.tr(),
-                          okButtonTitle: LocaleKeys.delete.tr(),
-                          onTapOk: () {
-                            Navigator.of(context).pop();
-                            _notificationCubit.notificationPagination!
-                                .deleteNotification();
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),

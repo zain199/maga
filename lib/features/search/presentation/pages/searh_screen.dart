@@ -129,6 +129,7 @@ class _SearchScreenState extends State<SearchScreen>
         body: TabBarView(
           controller: tabController,
           children: [
+            // Hashtag
             RefreshIndicator(
               onRefresh: () {
                 searchCubit!.hashTagPagination!.onRefresh();
@@ -173,6 +174,7 @@ class _SearchScreenState extends State<SearchScreen>
                     commonDivider,
               ),
             ),
+            // People
             RefreshIndicator(
               onRefresh: () {
                 searchCubit!.peoplePagination!.onRefresh();
@@ -212,6 +214,7 @@ class _SearchScreenState extends State<SearchScreen>
                     commonDivider,
               ),
             ),
+            // Posts
             RefreshIndicator(
               onRefresh: () {
                 postCubit!.onRefresh();

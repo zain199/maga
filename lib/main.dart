@@ -1,6 +1,10 @@
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:colibri/app_theme_data.dart';
+import 'package:colibri/features/feed/presentation/bloc/feed_cubit.dart';
 
-import 'app_theme_data.dart';
+import 'features/authentication/presentation/bloc/login_cubit.dart';
+import 'features/authentication/presentation/bloc/sign_up_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'translations/codegen_loader.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'core/common/push_notification/push_notification_helper.dart';
@@ -49,7 +53,6 @@ void main() async {
   AC.getInstance();
   await NativeDeviceOrientationCommunicator().orientation(useSensor: false);
   await configureDependencies();
-
   localDataSource = getIt<LocalDataSource>();
   isUserLoggedIn = await localDataSource!.isUserLoggedIn();
 
@@ -100,43 +103,59 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth != 0) {
-          final size = Size(constraints.maxWidth, constraints.maxHeight);
-          ScreenUtil.init(
-            BoxConstraints(
-              maxWidth: constraints.maxWidth,
-              maxHeight: constraints.maxHeight,
-            ),
-            designSize: size,
-          );
-        }
-
-        return MaterialApp.router(
-          title: 'Mumblit',
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          localeResolutionCallback: (locale, supportedLocales) {
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale!.languageCode &&
-                  supportedLocale.countryCode == locale.countryCode) {
-                return supportedLocale;
-              }
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (BuildContext context) => getIt<LoginCubit>(),
+        ),
+        BlocProvider<SignUpCubit>(
+          create: (BuildContext context) => getIt<SignUpCubit>(),
+        ),
+        BlocProvider<FeedCubit>(
+          create: (BuildContext context) => getIt<FeedCubit>(),
+        ),
+      ],
+      child: MediaQuery(
+        data: MediaQueryData(size: Size(500, 500)),
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            if (constraints.maxWidth != 0) {
+              final size = Size(constraints.maxWidth, constraints.maxHeight);
+              ScreenUtil.init(
+                BoxConstraints(
+                  maxWidth: constraints.maxWidth,
+                  maxHeight: constraints.maxHeight,
+                ),
+                designSize: size,
+              );
             }
-            return supportedLocales.first;
+
+            return MaterialApp.router(
+              title: 'Colibri',
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: AppThemeData.appThemeData(context),
+              localeResolutionCallback: (locale, supportedLocales) {
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale!.languageCode &&
+                      supportedLocale.countryCode == locale.countryCode) {
+                    return supportedLocale;
+                  }
+                }
+                return supportedLocales.first;
+              },
+              routerDelegate: appRouter.delegate(initialRoutes: [
+                if (isUserLoggedIn) FeedScreenRoute(),
+                if (!isUserLoggedIn) WelcomeScreenRoute(),
+              ]),
+              routeInformationParser: appRouter.defaultRouteParser(),
+              builder: EasyLoading.init(),
+            );
           },
-          theme: AppThemeData.appThemeData(context),
-          routerDelegate: appRouter.delegate(initialRoutes: [
-            if (isUserLoggedIn) FeedScreenRoute(),
-            if (!isUserLoggedIn) WelcomeScreenRoute(),
-          ]),
-          routeInformationParser: appRouter.defaultRouteParser(),
-          builder: EasyLoading.init(),
-        );
-      },
+        ),
+      ),
     );
   }
 }

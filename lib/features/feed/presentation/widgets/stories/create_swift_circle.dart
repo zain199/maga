@@ -1,6 +1,6 @@
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/presentation/pages/redeem_confirmation_screen.dart';
+import '../../../../../core/theme/app_icons.dart';
+import '../../../../../extensions.dart';
+import '../../pages/redeem_confirmation_screen.dart';
 import 'package:flutter/material.dart';
 
 class CreateSwiftCircle extends StatelessWidget {

@@ -2,8 +2,6 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:colibri/core/extensions/color_extension.dart';
-import 'package:colibri/core/extensions/context_exrensions.dart';
-import 'package:colibri/core/extensions/string_extensions.dart';
 import 'package:colibri/core/theme/colors.dart';
 import 'package:colibri/core/theme/images.dart';
 import 'package:colibri/core/widgets/circle_painter.dart';
@@ -15,8 +13,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_url_preview/widgets/preview_description.dart';
-// import 'package:simple_url_preview/widgets/preview_image.dart';
-// import 'package:simple_url_preview/widgets/preview_site_name.dart';
+
 import 'package:simple_url_preview/widgets/preview_title.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:auto_route/auto_route.dart';
@@ -184,7 +181,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     InteractionRow(
                       onClickAction: widget.onClickAction!,
                       postEntity: widget.postEntity!,
-                      setStateFun: () => setState(() {}),
                     ),
                     SizedBox(
                       height: context.getScreenHeight * .1,

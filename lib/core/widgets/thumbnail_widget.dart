@@ -44,11 +44,11 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
           child: const Icon(
             Icons.close,
             size: 18,
-            color: Colors.purple,
+            color: Colors.red,
           )
               .toContainer(
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.purple, width: 1),
+                      border: Border.all(color: Colors.red, width: 1),
                       shape: BoxShape.circle,
                       color: Colors.white))
               .onTapWidget(() {
@@ -106,11 +106,11 @@ class _GiphyWidgetState extends State<GiphyWidget> {
             child: const Icon(
               Icons.close,
               size: 18,
-              color: Colors.purple,
+              color: Colors.red,
             )
                 .toContainer(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.purple, width: 1),
+                border: Border.all(color: Colors.red, width: 1),
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),

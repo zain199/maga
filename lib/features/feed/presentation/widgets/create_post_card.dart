@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/core/common/add_thumbnail/web_link_show.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
-import 'package:colibri/features/feed/presentation/widgets/mention_suggestion_list.dart';
-import 'package:colibri/features/posts/presentation/widgets/replying_media_row.dart';
+import '../../../../core/common/add_thumbnail/web_link_show.dart';
+import '../../../../core/theme/images.dart';
+import '../../domain/entity/post_entity.dart';
+import 'mention_suggestion_list.dart';
+import '../../../posts/presentation/widgets/replying_media_row.dart';
 import 'create_poll_container.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -707,7 +707,7 @@ class _CreatePostCardState extends State<CreatePostCard> {
       } else if (linkUrl.contains("https://") || linkUrl.contains("www.")) {
         return SimpleUrlPreviewWeb(
           url: linkUrl,
-          bgColor: Colors.purple,
+          bgColor: Colors.red,
           previewHeight: 200,
           homePagePostCreate: true,
           linkTitle: linkTitle,

@@ -18,7 +18,6 @@ import '../pagination/show_likes_pagination.dart';
 import '../../../search/domain/usecase/search_post_use_case.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import '../../../../extensions.dart';
 part 'post_state.dart';
 

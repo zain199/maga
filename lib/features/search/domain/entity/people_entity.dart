@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import '../../../posts/data/model/response/likes_response.dart';
-
-import '../../data/models/people_response.dart';
-import '../../../../extensions.dart';
 import 'package:faker/faker.dart';
+
+import '../../../../extensions.dart';
+import '../../../posts/data/model/response/likes_response.dart';
+import '../../data/models/people_response.dart';
 
 class PeopleEntity {
   final String id;

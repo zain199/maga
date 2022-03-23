@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 import '../../../extensions.dart';
 
 class SlideBottomWidget extends HookWidget {
@@ -9,7 +10,7 @@ class SlideBottomWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller =
-        useAnimationController(duration: const Duration(milliseconds: 500));
+        useAnimationController(duration: const Duration(milliseconds: 200));
     useValueChanged<bool, void>(doForward, (oldValue, newValue) {
       if (!oldValue)
         controller.forward();

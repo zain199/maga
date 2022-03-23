@@ -161,12 +161,15 @@ extension PaddingExtension on Widget {
       SlideTransition(
         child: this,
         position: Tween<Offset>(
-          begin: const Offset(0.0, 1.0),
+          begin: const Offset(0.0, -1.0),
           end: const Offset(0.0, 0.0),
-        ).animate(CurvedAnimation(
+        ).animate(
+          CurvedAnimation(
             parent: controller,
-            curve: Curves.fastLinearToSlowEaseIn,
-            reverseCurve: Curves.fastLinearToSlowEaseIn)),
+            curve: Curves.linear,
+            reverseCurve: Curves.linear,
+          ),
+        ),
       );
 
   ScaleTransition toScaleAnimation(AnimationController controller) =>

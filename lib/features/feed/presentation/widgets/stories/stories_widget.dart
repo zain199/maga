@@ -1,6 +1,6 @@
-import 'package:colibri/features/feed/presentation/widgets/stories/create_swift_circle.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/presentation/widgets/stories/view_swift_circle.dart';
+import 'create_swift_circle.dart';
+import '../../../../../extensions.dart';
+import 'view_swift_circle.dart';
 import 'package:flutter/material.dart';
 
 class StoriesWidget extends StatelessWidget {

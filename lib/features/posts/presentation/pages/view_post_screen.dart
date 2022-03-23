@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/core/constants/appconstants.dart';
-import 'package:colibri/features/posts/presentation/widgets/create_reply_box.dart';
-import 'package:colibri/features/search/presentation/bloc/search_cubit.dart';
+import '../../../../core/constants/appconstants.dart';
+import '../widgets/create_reply_box.dart';
+import '../../../search/presentation/bloc/search_cubit.dart';
 import '../widgets/report_post_widget.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
 import '../../../../core/di/injection.dart';
@@ -14,7 +14,6 @@ import '../../../feed/presentation/widgets/no_data_found_screen.dart';
 import '../bloc/createpost_cubit.dart';
 import '../bloc/view_post_cubit.dart';
 import 'show_likes_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +33,7 @@ class ViewPostScreen extends StatefulWidget {
 class _ViewPostScreenState extends State<ViewPostScreen> {
   ViewPostCubit? viewPostCubit;
   CreatePostCubit? createPostCubit;
+  String? lastPostId;
 
   @override
   void initState() {
@@ -215,6 +215,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
         }
       });
 
+  /// TODO This is the replies connector line
   Widget getTimeLineView(List<PostEntity> postEntity) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: FixedTimeline.tileBuilder(
@@ -240,13 +241,12 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                     : Container(),
             itemCount: postEntity.length,
             contentsBuilder: (c, index) {
-              final item = postEntity[index];
-              return displayItem(item, index);
+              return displayItem(postEntity, index);
             },
           ),
           theme: const TimelineThemeData.raw(
             direction: Axis.vertical,
-            color: Colors.purple,
+            color: Colors.red,
             nodePosition: 0.0,
             nodeItemOverlap: true,
             indicatorPosition: 0.0,
@@ -263,7 +263,10 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
         ),
       ).toFlexible();
 
-  Widget displayItem(PostEntity item, int index) {
+  Widget displayItem(List<PostEntity> postEntity, int index) {
+    final item = postEntity[index];
+    if (item.parentPostTime.isNotEmpty)
+      lastPostId = postEntity[index - 1].postId;
     if (item.showFullDivider)
       return const Divider(
         thickness: 2,
@@ -283,6 +286,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
           color: AppColors.sfBgColor,
         ),
       ].toColumn();
+
     return PostItem(
       replyCountIncreased: (value) {
         var item = viewPostCubit!.items[index];

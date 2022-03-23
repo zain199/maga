@@ -1,14 +1,11 @@
-import 'package:colibri/core/extensions/context_exrensions.dart';
-import 'package:colibri/core/extensions/string_extensions.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
-import 'package:colibri/features/posts/domain/entiity/reply_entity.dart';
-import 'package:colibri/features/posts/presentation/pages/create_post.dart';
-import 'package:colibri/translations/locale_keys.g.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/images.dart';
+import '../../../../extensions.dart';
+import '../../domain/entity/post_entity.dart';
+import '../../../posts/domain/entiity/reply_entity.dart';
+import '../../../posts/presentation/pages/create_post.dart';
+import '../../../../translations/locale_keys.g.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -111,7 +108,7 @@ class FeedInteractionRow extends StatelessWidget {
                     color: postEntity!.isLiked == null
                         ? Color(0xFF737880)
                         : postEntity!.isLiked!
-                            ? Colors.purple
+                            ? Colors.red
                             : Color(0xFF737880),
                     fontFamily: "CeraPro",
                     fontWeight: FontWeight.w400,

@@ -1,5 +1,5 @@
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
+import '../../../../extensions.dart';
+import '../../../../features/feed/domain/entity/post_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

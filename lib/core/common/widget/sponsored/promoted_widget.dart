@@ -1,6 +1,6 @@
-import 'package:colibri/core/common/widget/common_divider.dart';
-import 'package:colibri/core/common/widget/sponsored/sponsored_body_widget.dart';
-import 'package:colibri/core/common/widget/sponsored/sponsored_header.dart';
+import '../common_divider.dart';
+import 'sponsored_body_widget.dart';
+import 'sponsored_header.dart';
 
 import '../../../../features/feed/domain/entity/post_entity.dart';
 import 'package:flutter/material.dart';

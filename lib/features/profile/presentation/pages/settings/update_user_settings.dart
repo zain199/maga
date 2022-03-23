@@ -11,12 +11,11 @@ import '../../../../../core/widgets/media_picker.dart';
 import '../../../../feed/presentation/widgets/create_post_card.dart';
 import '../../../domain/entity/setting_entity.dart';
 import '../../bloc/settings/user_setting_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import '../../../../../extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_select/smart_select.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:awesome_select/awesome_select.dart';
 
 class UpdateUserProfile extends StatefulWidget {
   final UpdateSettingEnum updateSettingEnum;
@@ -79,7 +78,7 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> {
                     },
                     color: widget.updateSettingEnum ==
                             UpdateSettingEnum.DELETE_ACCOUNT
-                        ? Colors.purple
+                        ? Colors.red
                         : AppColors.colorPrimary,
                   ).toPadding(16),
                 ].toColumn(

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import '../bloc/sign_up_cubit.dart';
 import 'package:keyboard_actions/external/platform_check/platform_check.dart';
 import '../../../../core/common/buttons/custom_button.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
-import '../../../../core/di/injection.dart';
 import '../../../../core/routes/routes.gr.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/colors.dart';
@@ -24,18 +24,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginCubit? loginCubit;
+  late LoginCubit _loginCubit;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    loginCubit = getIt<LoginCubit>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-
-    // EasyLoading.show();
   }
 
   @override
@@ -47,38 +44,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _loginCubit = BlocProvider.of<LoginCubit>(context);
     context.initScreenUtil();
     return GestureDetector(
       onTap: () => context.removeFocus(),
       child: SafeArea(
-        child: BlocProvider<LoginCubit>(
-          create: (c) => loginCubit!,
-          child: BlocListener<LoginCubit, CommonUIState>(
-            listener: (_, state) {
-              state.maybeWhen(
-                orElse: () {},
-                success: (message) {
+        child: BlocConsumer<LoginCubit, CommonUIState>(
+          listener: (_, state) {
+            state.maybeWhen(
+              orElse: () {},
+              success: (message) {
+                if (message == SuccessState.LOGIN_SUCCESS) {
                   context.router.root.pushAndPopUntil(
                     FeedScreenRoute(),
                     predicate: (route) => false,
                   );
                   context.showSnackBar(message: "Login Successfully");
-                },
-                error: (e) {
-                  if (e!.isNotEmpty) {
-                    context.showOkAlertDialog(desc: e, title: "Alert");
-                  }
-                },
-              );
-            },
-            child: BlocBuilder<LoginCubit, CommonUIState>(
-              builder: (c, state) => state.when(
-                initial: buildHome,
-                success: (s) => buildHome(),
-                loading: () => LoadingBar(),
-                error: (e) => buildHome(),
-              ),
-            ),
+                }
+              },
+              error: (e) {
+                if (e!.isNotEmpty) {
+                  context.showOkAlertDialog(desc: e, title: "Alert");
+                }
+              },
+            );
+          },
+          builder: (c, state) => state.when(
+            initial: buildHome,
+            success: (s) => buildHome(),
+            loading: () => LoadingBar(),
+            error: (e) => buildHome(),
           ),
         ),
       ),
@@ -97,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
                 actions: [
                   KeyboardActionsItem(
-                    focusNode: loginCubit!.emailValidators.focusNode,
+                    focusNode: _loginCubit.emailValidators.focusNode,
                   ),
                   KeyboardActionsItem(
                     displayDoneButton: true,
@@ -112,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       }
                     ],
-                    focusNode: loginCubit!.passwordValidator.focusNode,
+                    focusNode: _loginCubit.passwordValidator.focusNode,
                   ),
                 ],
               ),
@@ -159,9 +154,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ? 'Please enter more than 6 characters'
               : null,
           onSubmit: (value) {
-            loginCubit!
-                .loginUser(_emailController.text, _passwordController.text);
+            _loginCubit.loginUser(
+                _emailController.text, _passwordController.text);
           },
+          isPassword: true,
+          isPasswordVisible: _loginCubit.isPasswordVisible,
+          onVisibilityTap: () => _loginCubit.changePasswordVisibility(),
         ),
         Strings.forgotPassword
             .toCaption(fontWeight: FontWeight.w600)
@@ -170,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .onTapWidget(() {
           context.router.root.push(ResetPasswordScreenRoute());
         }),
-        // "The email and password you entered does not match. Please double-check and try again".toCaption(color: Colors.purple,fontWeight: FontWeight.w600).toVisibilityStreamBuilder(loginCubit.errorTextStream.stream)
+        // "The email and password you entered does not match. Please double-check and try again".toCaption(color: Colors.red,fontWeight: FontWeight.w600).toVisibilityStreamBuilder(loginCubit.errorTextStream.stream)
       ].toColumn()
     ]
         .toColumn(
@@ -216,18 +214,24 @@ class _LoginScreenState extends State<LoginScreen> {
         fullWidth: true,
         onTap: () async {
           if (_formValid)
-            await loginCubit!
-                .loginUser(_emailController.text, _passwordController.text);
+            _loginCubit.loginUser(
+                _emailController.text, _passwordController.text);
           FocusManager.instance.primaryFocus!.unfocus();
         },
       ),
       35.toSizedBox,
       [
-
+        Images.facebook
+            .toSvg()
+            .toFlatButton(() async => _loginCubit.facebookLogin(),
+                color: AppColors.fbBlue)
+            .toSizedBox(height: 40, width: 55)
+            .toVisibility(PlatformCheck.isAndroid),
+        10.toSizedBox,
         Images.google
             .toSvg()
             .toFlatButton(
-              () => loginCubit!.googleLogin(),
+              () => _loginCubit.googleLogin(),
             )
             .toSizedBox(height: 40, width: 55)
             .toContainer(
@@ -240,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Images.twitter
             .toSvg()
             .toFlatButton(
-              () => loginCubit!.twitterLogin(),
+              () => _loginCubit.twitterLogin(),
               color: AppColors.twitterBlue,
             )
             .toSizedBox(height: 40, width: 55)

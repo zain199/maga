@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:colibri/core/extensions/color_extension.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/translations/locale_keys.g.dart';
+import '../../../../core/extensions/color_extension.dart';
+import '../../../../core/theme/images.dart';
+import '../../../../translations/locale_keys.g.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import '../../../../core/datasource/local_data_source.dart';
 import '../../../../core/di/injection.dart';
@@ -65,7 +65,7 @@ class SenderChatItem extends StatelessWidget {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.purple.shade600,
+                              color: Colors.blue.shade600,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(
                                     !context.isArabic() ? 40 : 0),
@@ -87,17 +87,14 @@ class SenderChatItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 5.0,
-                            right: 5.0,
-                            bottom: 20,
-                          ),
-                          child: _userData!.data!.user!.profilePicture!
-                              .toRoundNetworkImage(radius: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 5.0,
+                          right: 5.0,
+                          bottom: 20,
                         ),
+                        child: _userData!.data!.user!.profilePicture!
+                            .toRoundNetworkImage(radius: 10),
                       ),
                     ],
                   )

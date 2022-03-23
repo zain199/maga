@@ -1,13 +1,10 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:colibri/core/extensions/color_extension.dart';
-import 'package:colibri/core/theme/images.dart';
+import '../../../../core/extensions/color_extension.dart';
+import '../../../../core/theme/images.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/constants/appconstants.dart';
 import '../../domain/entity/chat_entity.dart';
-import 'package:flutter/cupertino.dart';
 import '../../../../extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/core/theme/images.dart';
+import '../../../../core/theme/images.dart';
 import '../widgets/feed_widgets.dart';
 import 'package:flutter/services.dart';
 import '../../../../translations/locale_keys.g.dart';
@@ -29,8 +29,6 @@ import '../../../profile/presentation/pages/settings_page.dart';
 import '../../../search/presentation/pages/searh_screen.dart';
 import '../../../../main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../profile/presentation/pages/bookmark_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -175,7 +173,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     child: Container(
                       color: scaffoldKey.currentState?.isDrawerOpen != null &&
                               scaffoldKey.currentState!.isDrawerOpen
-                          ? Colors.purple.withOpacity(0.6)
+                          ? Color(0xFF1D88F0).withOpacity(0.6)
                           : Colors.transparent,
                       height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width / 1.3,
@@ -232,160 +230,146 @@ class _FeedScreenState extends State<FeedScreen> {
                           : Container(),
                     ],
                   ),
-                  bottomNavigationBar: Transform.translate(
-                    offset: const Offset(0, -13),
-                    child: Container(
-                      height: _isVisible ? 51 : 0,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                        top: 5,
-                      ),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: MyBorderShape(),
-                        shadows: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            blurRadius: 2.0,
-                            offset: Offset(1, 1),
-                          )
-                        ],
-                      ),
-                      child: Row(
-                        // mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              prevIndex = currentIndex;
-                              currentIndex = 0;
-                              feedCubit!.onRefresh();
-                              feedCubit!
-                                  .changeCurrentPage(const ScreenType.home());
-                            },
-                            child:
-                                AppIcons.homeIcon(screenType: snapshot.data!),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0, right: 5),
-                            child: SizedBox(
-                              height: 26,
-                              width: 26,
-                              child: InkWell(
-                                onTap: () {
-                                  // PushNotificationHelper.isMessageShow = false;
-                                  isMessageShow = false;
-                                  AC.prefs.setBool("message", false);
-                                  prevIndex = currentIndex;
-                                  currentIndex = 1;
-                                  feedCubit!.changeCurrentPage(
-                                      const ScreenType.message());
-                                  setState(() {});
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: Stack(
-                                    children: [
-                                      AppIcons.messageIcon(
-                                          screenType: snapshot.data!),
-                                      Positioned(
-                                        left: !context.isArabic() ? 40 : 0,
-                                        right: context.isArabic() ? 40 : 0,
-                                        child: Container(
-                                          height: 5,
-                                          width: 5,
-                                          child: isMessageShow!
-                                              ? Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: AppColors.bottomMenu,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                )
-                                              : Container(),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                  bottomNavigationBar: Container(
+                    height: _isVisible ? 51 : 0,
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 5,
+                    ),
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: MyBorderShape(),
+                    ),
+                    child: Row(
+                      // mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            prevIndex = currentIndex;
+                            currentIndex = 0;
+                            feedCubit!.onRefresh();
+                            feedCubit!
+                                .changeCurrentPage(const ScreenType.home());
+                          },
+                          child: AppIcons.homeIcon(screenType: snapshot.data!),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 5),
+                          child: SizedBox(
+                            height: 26,
+                            width: 26,
+                            child: InkWell(
+                              onTap: () {
+                                // PushNotificationHelper.isMessageShow = false;
+                                isMessageShow = false;
+                                AC.prefs.setBool("message", false);
+                                prevIndex = currentIndex;
+                                currentIndex = 1;
+                                feedCubit!.changeCurrentPage(
+                                    const ScreenType.message());
+                                setState(() {});
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 4),
+                                child: Stack(
+                                  children: [
+                                    AppIcons.messageIcon(
+                                        screenType: snapshot.data!),
+                                    Positioned(
+                                      left: !context.isArabic() ? 40 : 0,
+                                      right: context.isArabic() ? 40 : 0,
+                                      child: Container(
+                                        height: 5,
+                                        width: 5,
+                                        child: isMessageShow!
+                                            ? Container(
+                                                decoration: const BoxDecoration(
+                                                  color: AppColors.bottomMenu,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              )
+                                            : Container(),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: !context.isArabic() ? 40 : 0,
-                              right: context.isArabic() ? 40 : 0,
-                            ),
-                            child: SizedBox(
-                              height: 26,
-                              width: 26,
-                              child: InkWell(
-                                onTap: () {
-                                  isNotificationShow = false;
-                                  AC.prefs.setBool("notification", false);
-                                  prevIndex = currentIndex;
-                                  currentIndex = 3;
-                                  feedCubit!.changeCurrentPage(
-                                    const ScreenType.notification(),
-                                  );
-                                  setState(() {});
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: Stack(
-                                    children: [
-                                      AppIcons.notificationIcon(
-                                          screenType: snapshot.data!),
-                                      Positioned(
-                                        right: !context.isArabic() ? 3 : null,
-                                        top: 0,
-                                        left: context.isArabic() ? 3 : null,
-                                        child: Container(
-                                          height: 5,
-                                          width: 5,
-                                          child: isNotificationShow!
-                                              ? Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: Colors.purple,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                )
-                                              : Container(),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: !context.isArabic() ? 40 : 0,
+                            right: context.isArabic() ? 40 : 0,
+                          ),
+                          child: SizedBox(
+                            height: 26,
+                            width: 26,
+                            child: InkWell(
+                              onTap: () {
+                                isNotificationShow = false;
+                                AC.prefs.setBool("notification", false);
+                                prevIndex = currentIndex;
+                                currentIndex = 3;
+                                feedCubit!.changeCurrentPage(
+                                  const ScreenType.notification(),
+                                );
+                                setState(() {});
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 4),
+                                child: Stack(
+                                  children: [
+                                    AppIcons.notificationIcon(
+                                        screenType: snapshot.data!),
+                                    Positioned(
+                                      right: !context.isArabic() ? 3 : null,
+                                      top: 0,
+                                      left: context.isArabic() ? 3 : null,
+                                      child: Container(
+                                        height: 5,
+                                        width: 5,
+                                        child: isNotificationShow!
+                                            ? Container(
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.blue,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              )
+                                            : Container(),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              prevIndex = currentIndex;
-                              currentIndex = 4;
-                              feedCubit!.changeCurrentPage(
-                                const ScreenType.search(),
-                              );
-                            },
-                            child:
-                                AppIcons.searchIcon(screenType: snapshot.data!),
-                          ),
-                        ],
-                      ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            prevIndex = currentIndex;
+                            currentIndex = 4;
+                            feedCubit!.changeCurrentPage(
+                              const ScreenType.search(),
+                            );
+                          },
+                          child:
+                              AppIcons.searchIcon(screenType: snapshot.data!),
+                        ),
+                      ],
                     ),
                   ),
                   floatingActionButton: isKeyBoardShow
                       ? Container()
                       : Transform.translate(
-                          offset: const Offset(0, -22),
+                          offset: const Offset(0, -10),
                           child: Container(
                             // height: 65,
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
-                              color: Colors.purple.withOpacity(0.3),
+                              color: Colors.blue.withOpacity(0.3),
                               shape: BoxShape.circle,
                             ),
                             child: FloatingActionButton(
@@ -435,7 +419,6 @@ class _FeedScreenState extends State<FeedScreen> {
       },
       child: Scrollbar(
         child: CustomScrollView(
-
           slivers: [
             // StoriesWidget(),
             SliverToBoxAdapter(),

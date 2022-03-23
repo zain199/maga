@@ -1,11 +1,10 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
-import 'package:colibri/core/extensions/context_exrensions.dart';
-import 'package:colibri/core/extensions/string_extensions.dart';
-import 'package:colibri/core/extensions/widget_extensions.dart';
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/core/theme/images.dart';
-import 'package:colibri/features/feed/domain/entity/post_entity.dart';
+import '../../../../core/extensions/context_exrensions.dart';
+import '../../../../core/extensions/string_extensions.dart';
+import '../../../../core/extensions/widget_extensions.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/images.dart';
+import '../../domain/entity/post_entity.dart';
 import 'package:flutter/material.dart';
 
 class InteractionRow extends StatefulWidget {
@@ -13,16 +12,31 @@ class InteractionRow extends StatefulWidget {
     Key? key,
     required this.onClickAction,
     required this.postEntity,
-    required this.setStateFun,
   }) : super(key: key);
   final Function onClickAction;
   final PostEntity? postEntity;
-  final Function setStateFun;
+
   @override
   State<InteractionRow> createState() => _InteractionRowState();
 }
 
 class _InteractionRowState extends State<InteractionRow> {
+  late bool? _isLiked;
+  late bool? _isRetweeted;
+  int _likeCount = 0;
+  int _retweetCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.postEntity != null) {
+      _isLiked = widget.postEntity!.isLiked;
+      _isRetweeted = widget.postEntity!.isReposted;
+      _likeCount = int.parse(widget.postEntity!.likeCount!);
+      _retweetCount = int.parse(widget.postEntity!.repostCount!);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,9 +45,6 @@ class _InteractionRowState extends State<InteractionRow> {
         InkWell(
           onTap: () {
             widget.onClickAction(0);
-            Future.delayed(Duration(milliseconds: 300), () {
-              widget.setStateFun();
-            });
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,8 +78,14 @@ class _InteractionRowState extends State<InteractionRow> {
         InkWell(
           onTap: () {
             widget.onClickAction(1);
-            Future.delayed(Duration(milliseconds: 300), () {
-              widget.setStateFun();
+            setState(() {
+              if (widget.postEntity != null) {
+                _isLiked = !_isLiked!;
+                if (_isLiked!)
+                  _likeCount++;
+                else
+                  _likeCount--;
+              }
             });
           },
           child: Row(
@@ -77,7 +94,7 @@ class _InteractionRowState extends State<InteractionRow> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 0),
-                child: widget.postEntity?.isLiked ?? false
+                child: _isLiked ?? false
                     ? AppIcons.filledHeartIcon(height: 14, width: 14)
                     : AppIcons.heartIcon(
                         color: Colors.white, height: 17, width: 17),
@@ -87,11 +104,9 @@ class _InteractionRowState extends State<InteractionRow> {
                     ? const EdgeInsets.only(bottom: 0, right: 5)
                     : const EdgeInsets.only(bottom: 0, left: 5),
                 child: Text(
-                  widget.postEntity?.likeCount ?? "0",
+                  _likeCount.toString(),
                   style: TextStyle(
-                    color: widget.postEntity?.isLiked ?? false
-                        ? Colors.purple
-                        : Color(0xFFFFFFFF),
+                    color: _isLiked ?? false ? Colors.red : Color(0xFFFFFFFF),
                     fontFamily: "CeraPro",
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
@@ -104,10 +119,15 @@ class _InteractionRowState extends State<InteractionRow> {
         InkWell(
           onTap: () {
             widget.onClickAction(2);
-            Future.delayed(Duration(milliseconds: 300), () {
-              context.router.root.pop();
-              widget.setStateFun();
-              // 456123
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            setState(() {
+              if (_isRetweeted != null) {
+                _isRetweeted = !_isRetweeted!;
+                if (_isRetweeted!)
+                  _retweetCount++;
+                else
+                  _retweetCount--;
+              }
             });
           },
           child: Row(
@@ -116,9 +136,9 @@ class _InteractionRowState extends State<InteractionRow> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 0),
-                child: widget.postEntity?.isReposted ?? false
+                child: _isRetweeted ?? false
                     ? AppIcons.repostIcon(
-                        color: Colors.purple, height: 16, width: 16)
+                        color: Colors.blue, height: 16, width: 16)
                     : AppIcons.repostIcon(
                         color: Colors.white, height: 16, width: 16),
               ),
@@ -127,9 +147,9 @@ class _InteractionRowState extends State<InteractionRow> {
                     ? const EdgeInsets.only(bottom: 0, right: 5)
                     : const EdgeInsets.only(bottom: 0, left: 5),
                 child: Text(
-                  widget.postEntity?.repostCount ?? "",
+                  _retweetCount.toString(),
                   style: TextStyle(
-                    color: widget.postEntity?.isReposted ?? false
+                    color: _isRetweeted ?? false
                         ? AppColors.alertBg
                         : Color(0xFFFFFFFF),
                     fontFamily: "CeraPro",
@@ -145,9 +165,6 @@ class _InteractionRowState extends State<InteractionRow> {
             .toPadding(0)
             .onTapWidget(() {
           widget.onClickAction(3);
-          Future.delayed(Duration(milliseconds: 300), () {
-            widget.setStateFun();
-          });
         })
       ],
     );

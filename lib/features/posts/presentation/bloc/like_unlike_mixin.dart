@@ -168,21 +168,6 @@ mixin PostInteractionMixin on PostPaginatonCubit<PostEntity, CommonUIState> {
                   isReposted: true));
         // ..notifyListeners();
       });
-
-      // var firstWhere = pagingController.itemList.firstWhere((element) => element.postId==item.postId&&element.showRepostedText,orElse:()=> null);
-      // if(firstWhere!=null&&firstWhere.showRepostedText){
-      //   pagingController.itemList.removeAt(pagingController.itemList.indexOf(firstWhere));
-      //   var firstWhere2 = pagingController.itemList.firstWhere((element) => element.postId==item.postId,orElse:()=> null);
-      //   var indexOf = pagingController.itemList.indexOf(firstWhere2);
-      //   pagingController.itemList[indexOf]=firstWhere2.copyWith(isReposted: false,repostCount: firstWhere2.repostCount.dec);
-      // }
-      // else{
-      //   pagingController.itemList[index]=item.copyWith(isReposted: !item.isReposted,
-      //       repostCount: (item.isReposted?item.repostCount.dec:item.repostCount.inc).toString());
-      //
-      //
-      //   pagingController..itemList.insert(0, item.copyWith(showRepostedText: true,repostCount: item.repostCount.inc.toString(),isReposted: true))..notifyListeners();
-      // }
     }
 
     pagingController.notifyListeners();

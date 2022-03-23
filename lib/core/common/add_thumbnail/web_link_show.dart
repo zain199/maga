@@ -223,12 +223,14 @@ class _SimpleUrlPreviewWebState extends State<SimpleUrlPreviewWeb> {
     return Container(
       // elevation: 5,
       margin: EdgeInsets.only(
-          left: widget.homePagePostCreate ? 70 : 0,
-          right: widget.homePagePostCreate ? 15 : 0),
+        left: widget.homePagePostCreate ? 70 : 0,
+        right: widget.homePagePostCreate ? 15 : 0,
+      ),
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.withOpacity(0.5)),
-          borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        border: Border.all(color: Colors.grey.withOpacity(0.5)),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

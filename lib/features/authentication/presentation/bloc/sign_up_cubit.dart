@@ -59,12 +59,27 @@ class SignUpCubit extends Cubit<CommonUIState> {
   final SignUpUseCase? signUpUseCase;
   final SocialLoginUseCase? socialLoginUseCase;
 
+  // UI STATE
+  bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
+
   SignUpCubit(this.signUpUseCase, this.socialLoginUseCase)
       : super(const CommonUIState.initial()) {
     initCubit();
   }
+  void changePasswordVisibility() {
+    emit(const CommonUIState.initial());
+    isPasswordVisible = !isPasswordVisible;
+    emit(const CommonUIState.success(''));
+  }
 
-  signUp({
+  void changeConfirmPasswordVisibility() {
+    emit(const CommonUIState.initial());
+    isConfirmPasswordVisible = !isConfirmPasswordVisible;
+    emit(const CommonUIState.success(''));
+  }
+
+  void signUp({
     required String firstName,
     required String lastName,
     required String userName,
@@ -84,8 +99,14 @@ class SignUpCubit extends Cubit<CommonUIState> {
         },
       ),
     );
-    emit(response.fold((l) => CommonUIState.error(l.errorMessage),
-        (r) => CommonUIState.success(false)));
+    emit(
+      response.fold(
+        (l) => CommonUIState.error(l.errorMessage),
+        (r) => CommonUIState.success(
+          SuccessState.SIGNUP_SUCCESS,
+        ),
+      ),
+    );
   }
 
   void initCubit() {
@@ -142,3 +163,5 @@ class SignUpCubit extends Cubit<CommonUIState> {
     return Future.value();
   }
 }
+
+enum SuccessState { SIGNUP_SUCCESS, LOGIN_SUCCESS }

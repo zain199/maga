@@ -12,12 +12,7 @@ class Numeral {
   /// [number] is num [Type].
   ///
   /// return [Numeral] instance.
-  factory Numeral(num number) {
-    assert(
-        number is num, 'The data to be processed must be passed in a [num].');
-
-    return Numeral._(number);
-  }
+  factory Numeral(num number) => Numeral._(number);
 
   /// Get a [number] for double value.
   ///

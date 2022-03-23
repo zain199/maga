@@ -1,10 +1,9 @@
-import 'package:colibri/core/extensions/string_extensions.dart';
-import 'package:colibri/core/theme/app_icons.dart';
-import 'package:colibri/core/theme/strings.dart';
-import 'package:colibri/core/widgets/media_picker.dart';
-import 'package:colibri/extensions.dart';
-import 'package:colibri/features/feed/presentation/widgets/create_post_card.dart';
-import 'package:colibri/features/posts/presentation/bloc/createpost_cubit.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/strings.dart';
+import '../../../../core/widgets/media_picker.dart';
+import '../../../../extensions.dart';
+import '../../../feed/presentation/widgets/create_post_card.dart';
+import '../bloc/createpost_cubit.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:giphy_picker/giphy_picker.dart';

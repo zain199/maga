@@ -1,27 +1,27 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:colibri/features/messages/presentation/widgets/send_message_row.dart';
-import '../../../../core/routes/routes.gr.dart';
-import '../../domain/entity/message_entity.dart';
-import '../../../../translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
 import '../../../../core/common/push_notification/push_notification_helper.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
 import '../../../../core/di/injection.dart';
+import '../../../../core/routes/routes.gr.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../extensions.dart';
+import '../../../../translations/locale_keys.g.dart';
 import '../../../feed/presentation/widgets/no_data_found_screen.dart';
 import '../../data/models/request/delete_chat_request_model.dart';
 import '../../domain/entity/chat_entity.dart';
+import '../../domain/entity/message_entity.dart';
 import '../bloc/chat_cubit.dart';
 import '../widgets/reviever_chat_item.dart';
+import '../widgets/send_message_row.dart';
 import '../widgets/sender_chat_item.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class ChatScreen extends StatefulWidget {
   final String? otherPersonUserId;
@@ -52,8 +52,9 @@ class _ChatScreenState extends State<ChatScreen>
     chatCubit!.chatPagination!.searchChat = false;
     PushNotificationHelper.listenNotificationOnChatScreen = (notificationItem) {
       chatCubit!.changeMessageList(
-          chatCubit!.chatPagination!.pagingController.itemList!
-            ..insert(0, notificationItem));
+        chatCubit!.chatPagination!.pagingController.itemList!
+          ..insert(0, notificationItem),
+      );
       chatCubit!.chatPagination!.pagingController;
     };
   }
@@ -228,7 +229,7 @@ class _ChatScreenState extends State<ChatScreen>
                 bottom: 20,
               ),
               decoration: const BoxDecoration(
-                color: Colors.purple,
+                color: Color(0xff0e8df1),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -240,8 +241,8 @@ class _ChatScreenState extends State<ChatScreen>
                   Container(
                     height: 6,
                     width: 37,
-                    decoration:  BoxDecoration(
-                      color:  Colors.purple[900],
+                    decoration: const BoxDecoration(
+                      color: const Color(0xff0560b2),
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       ),

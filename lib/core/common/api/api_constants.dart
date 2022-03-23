@@ -1,8 +1,8 @@
 import '../static_data/all_countries.dart';
 
 class ApiConstants {
-  static const String baseUrl = "https://www.mumblit.com/mobile_api/";
-  static const String baseMediaUrl = "https://www.mumblit.com/";
+  static const String baseUrl = "https://www.colibri-sm.ru/mobile_api/";
+  static const String baseMediaUrl = "https://www.colibri-sm.ru/";
   static const String loginEndPoint = "login";
   static const String signUpEndPoint = "signup";
   static const String resetPassword = "resetpassword";

@@ -5,11 +5,13 @@ import 'package:better_player/better_player.dart';
 import 'package:colibri/core/common/media/media_data.dart';
 import 'package:colibri/core/routes/routes.gr.dart';
 import 'package:colibri/core/theme/colors.dart';
-import 'package:colibri/core/widgets/circle_painter.dart';
 import 'package:colibri/features/feed/presentation/widgets/create_post_card.dart';
+import 'package:colibri/features/posts/presentation/widgets/video_play_button.dart';
+import 'package:colibri/features/posts/presentation/widgets/video_sound_button.dart';
+import 'package:colibri/features/posts/presentation/widgets/video_time_label_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:colibri/extensions.dart';
 
@@ -70,12 +72,30 @@ class MyVideoPlayer extends StatefulWidget {
 class MyVideoPlayerState extends State<MyVideoPlayer> {
   late BetterPlayerController _betterPlayerController;
   bool isPlaying = false;
-
+  Duration videoTimePlayed = Duration(seconds: 0);
   @override
   void initState() {
     super.initState();
     isPlaying = widget.fullVideoControls;
+
     playerControllerShow();
+    _betterPlayerController.setVolume(0.0);
+    _betterPlayerController.addEventsListener(betterPlayerEvenetListener);
+  }
+
+  void betterPlayerEvenetListener(BetterPlayerEvent event) {
+    String? _newProgress =
+        event.parameters?["progress"].toString().split(".")[0];
+
+    if (_newProgress != 'null') {
+      final format = DateFormat("HH:mm:ss");
+      final progressFormat = format.parse(_newProgress!);
+      videoTimePlayed = Duration(
+        hours: progressFormat.hour,
+        minutes: progressFormat.minute,
+        seconds: progressFormat.second,
+      );
+    }
   }
 
   // This kicks of then playing video
@@ -86,8 +106,10 @@ class MyVideoPlayerState extends State<MyVideoPlayer> {
           : BetterPlayerDataSourceType.file,
       widget.path!,
     );
+
     _betterPlayerController = BetterPlayerController(
       BetterPlayerConfiguration(
+        autoPlay: true,
         fit: BoxFit.fitHeight,
         aspectRatio: 19 / 16,
         deviceOrientationsOnFullScreen: [
@@ -109,10 +131,6 @@ class MyVideoPlayerState extends State<MyVideoPlayer> {
 
   void pause() {
     _betterPlayerController.pause();
-  }
-
-  void play() {
-    _betterPlayerController.play();
   }
 
   @override
@@ -149,28 +167,22 @@ class MyVideoPlayerState extends State<MyVideoPlayer> {
         BetterPlayer(
           controller: _betterPlayerController,
         ),
-        if (!widget.fullVideoControls)
-          CustomPaint(
-            painter: CirclePainter(),
-            child: Container(
-              height: 45.toHeight as double?,
-              width: 45.toHeight as double?,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.colorPrimary,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: const Icon(
-                  FontAwesomeIcons.play,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-            ),
-          ),
+        VideoPlayButton(_betterPlayerController)
+            .toVisibility(!widget.fullVideoControls),
+        // time
+        Positioned(
+          left: 10,
+          bottom: 10,
+          child: VideoTimeLabelWidget(_betterPlayerController),
+        ),
+        // sound
+        Positioned(
+          right: 10,
+          bottom: 10,
+          child: VideoSoundButton(_betterPlayerController),
+        ),
       ],
-    );
+    ); //
   }
 
   @override

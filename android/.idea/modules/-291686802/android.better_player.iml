@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":better_player" external.linked.project.path="$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="com.jhomlala.better_player" external.system.module.version="0.0.77" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":better_player" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.1.0" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../../../build/better_player/tmp/kotlin-classes/debug" />
+          <option name="classpath" value="$MODULE_DIR$/../../../../build/better_player/intermediates/compile_r_class_jar/debug/R.jar:/Users/theblackloki/Desktop/ColibriSM-Mobile-App-dev/build/wakelock/intermediates/compile_library_classes_jar/debug/classes.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/deee1f02e34112b07815bc35f28230b6/jetified-flutter_embedding_debug-1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6.jar:/Users/theblackloki/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.4.0-beta01/5b8f86fea035328fc9e8c660773037a3401ce25f/lifecycle-common-java8-2.4.0-beta01.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/b70de09003bb01459bee8ca4a40671c2/jetified-lifecycle-runtime-ktx-2.4.0-beta01-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/e53142c7e3ade0a7dc2eb6f6ed40ba42/jetified-core-ktx-1.6.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/ec26cbdc6cb21e185bca0566980b1a9e/fragment-1.1.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/59d2724827083f4fa00b23a2ea5f8228/jetified-exoplayer-ui-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/8376e9b791406f38275579222b1be093/jetified-extension-mediasession-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/aaa125080451cae4ee551541ffbfae2d/media-1.3.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/0b9f22c6a2296b628e581415b6de95cd/viewpager-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/9c2789efdc706d28daf0f0290bc042f2/loader-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/47f714703de3f76ef40a96bb2a01e9e0/jetified-activity-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/b489f1e82dfedbaa4e0ac57979e0f8d3/customview-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/f017a951e84b2e403bb324292235c4b3/core-1.6.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/74097f6da3e0e3e999fa1bb2f9d8a689/lifecycle-runtime-2.4.0-beta01-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/ee7725f7f1ff7eea45b28cdd80798bd6/work-runtime-2.7.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/d67c34c46e4bb8bfd993bf8bf7a35217/lifecycle-livedata-2.1.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/a21a4d90639d66e04d27620f9badeb3c/lifecycle-livedata-core-2.1.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/14077bd69ef59af6db6fb972f2ac546d/jetified-savedstate-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.4.0-beta01/1fdb7349701e9cf2f0a69fc10642b6fef6bb3e12/lifecycle-common-2.4.0-beta01.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/dc5c91c94ff2df1c4d4270edf5b5c31c/core-runtime-2.1.0-api.jar:/Users/theblackloki/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/1c7a6b734a656ec03bf07f9e874fd905/versionedparcelable-1.1.1-api.jar:/Users/theblackloki/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/96e6e2003cab9cc3e4949e85e514c6be/lifecycle-viewmodel-2.1.0-api.jar:/Users/theblackloki/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/70197e0c00adb74c59803388a65a6947/jetified-annotation-experimental-1.1.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/e3e212840552916aa5169ce3da8df732/jetified-tracing-1.0.0-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/ae1f11f9ffaa4ae0bd86892170ae808f/jetified-exoplayer-core-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/630604a999de8f7cd390681ec60a99f3/jetified-exoplayer-common-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/88bfea85191e4e95891a7ffd931d2899/jetified-guava-27.1-android.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/d07ac1c74c9f5d77586f29f1587c6b8b/jetified-failureaccess-1.0.1.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/7a2ac38b5bc72c0ba83bb9a70600ff0f/jetified-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/e33cf885fd752be0d0e446613fe64b8d/jetified-exoplayer-extractor-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/35e1d425e0943555e1a081c5b93296fa/jetified-exoplayer-hls-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/f961bd7ab357e540de1f7b59c8e9f581/jetified-exoplayer-dash-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/10c60699ccb6cf459e5a89cb528376c7/jetified-exoplayer-smoothstreaming-2.15.1-api.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/c7bbab1d0473b447c05fe2fc59f369c6/jetified-kotlinx-coroutines-android-1.5.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/1c5b1887800810958805dfbd1804a122/jetified-kotlinx-coroutines-core-jvm-1.5.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/eb179a353809b8c8a30eb53fb069d2b0/jetified-kotlin-stdlib-jdk8-1.5.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/2cf088f80430a0820e949c04eca8a357/jetified-kotlin-stdlib-jdk7-1.5.31.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/31a0190080353b8619038d4b43dbd81c/jetified-kotlin-stdlib-1.5.31.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/6f00197e5132668e1cc3a58b041a916f/jetified-annotations-13.0.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/207b5423a79f388031b3992617589828/jetified-kotlin-stdlib-common-1.5.31.jar:/Users/theblackloki/.gradle/caches/transforms-2/files-2.1/6ccaa126c07be694d33f31f2eeb9385a/jetified-startup-runtime-1.0.0-api.jar:/Users/theblackloki/Library/Android/sdk/platforms/android-31/android.jar:/Users/theblackloki/Library/Android/sdk/build-tools/29.0.3/core-lambda-stubs.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="better_player_debug" />
+          <option name="languageVersion" value="1.5" />
+          <option name="apiVersion" value="1.5" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android/src/main/res;file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android/src/debug/res;file://$MODULE_DIR$/../../../../build/better_player/generated/res/rs/debug;file://$MODULE_DIR$/../../../../build/better_player/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android/src/androidTest/res;file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../build/better_player/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../../build/better_player/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../../build/better_player/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../../build/better_player/intermediates/javac/debugUnitTest/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/aidl_source_output_dir/debug/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/aidl_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/ap_generated_sources/debug/out">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/better_player/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/ap_generated_sources/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/ap_generated_sources/debugUnitTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/renderscript_source_output_dir/debug/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/renderscript_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/res/resValues/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/res/resValues/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/better_player/generated/res/resValues/debug" type="java-resource" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/res/rs/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/res/rs/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/source/buildConfig/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/better_player/generated/source/buildConfig/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/better_player/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+    </content>
+    <content url="file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android">
+      <excludeFolder url="file://$USER_HOME$/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/better_player-0.0.81/android/.gradle" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.4.0-beta01" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.4.0-beta01" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:27.1-android" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.31" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.5.31" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.5.31" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-ui:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:extension-mediasession:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.media:media:1.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.4.0-beta01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.work:work-runtime:2.7.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.tracing:tracing:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-core:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-common:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-extractor:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-hls:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-dash:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.startup:startup-runtime:1.0.0@aar" level="project" />
+    <orderEntry type="module" module-name="android.wakelock" />
+  </component>
+</module>

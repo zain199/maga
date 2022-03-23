@@ -13,7 +13,6 @@ import '../../../profile/domain/entity/profile_entity.dart';
 import '../../../profile/presentation/pages/followers_following_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/extensions/widget_extensions.dart';
 import '../../../../extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 

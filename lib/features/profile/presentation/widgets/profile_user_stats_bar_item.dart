@@ -22,7 +22,7 @@ class ProfileUserStatsBarItem extends StatelessWidget {
         children: [
           number.toSubTitle1(
             (url) => context.router.root.push(WebViewScreenRoute(url: url)),
-            color: Colors.purpleAccent.shade400,
+            color: Colors.blueAccent.shade400,
             fontWeight: FontWeight.w500,
           ),
           4.toSizedBoxHorizontal,

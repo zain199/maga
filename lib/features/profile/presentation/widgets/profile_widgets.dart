@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'profile_user_stats_bar.dart';
 import 'report_profile_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
-import '../../../../core/common/widget/custom_svg_renderer.dart';
 import '../../../../core/routes/routes.gr.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/colors.dart';
@@ -14,11 +13,9 @@ import '../../domain/entity/profile_entity.dart';
 import '../bloc/profile_cubit.dart';
 import '../pages/followers_following_screen.dart';
 import '../pages/profile_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -146,7 +143,7 @@ class _TopAppBarState extends State<TopAppBar> {
             ),
           ),
           [
-            40.toSizedBoxHorizontal,
+            20.toSizedBoxHorizontal,
             [
               [
                 [
@@ -165,7 +162,7 @@ class _TopAppBarState extends State<TopAppBar> {
                             bottom: 20,
                           ),
                           decoration: const BoxDecoration(
-                            color: Colors.purple,
+                            color: Color(0xff0e8df1),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25),
@@ -178,8 +175,8 @@ class _TopAppBarState extends State<TopAppBar> {
                                 height: 6,
                                 width: 37,
                                 margin: EdgeInsets.only(bottom: 10),
-                                decoration:  BoxDecoration(
-                                  color:  Colors.purple[900],
+                                decoration: const BoxDecoration(
+                                  color: const Color(0xff0560b2),
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(5),
                                   ),
@@ -308,7 +305,7 @@ class _TopAppBarState extends State<TopAppBar> {
                       ),
                     ),
                   ),
-                ].toColumn().toPadding(12),
+                ].toColumn().toPadding(6),
                 if (otherUser)
                   AppIcons.messageProfile().onTapWidget(
                     () {
@@ -367,7 +364,7 @@ class _TopAppBarState extends State<TopAppBar> {
                           : Colors.black54,
                       fontFamily1: "CeraPro",
                     )
-                    .toContainer(maxWidth: context.getScreenWidth * .8)
+                    .toContainer(maxWidth: context.getScreenWidth * .9)
                     .onTapWidget(
                   () {
                     context.showOkAlertDialog(
@@ -396,40 +393,50 @@ class _TopAppBarState extends State<TopAppBar> {
                 5.toSizedBoxHorizontal,
                 widget.profileEntity!.website!
                     .toCaption(
+                      maxLines: 1,
                       textOverflow: TextOverflow.ellipsis,
                     )
                     .toVisibility(
                       widget.profileEntity!.website!.isNotEmpty,
                     )
+                    .toContainer(
+                      height: context.getScreenHeight * .02,
+                      width: context.getScreenWidth * .5,
+                    )
               ].toRow(),
               if (widget.profileEntity!.website!.isNotEmpty) 5.toSizedBox,
-              [
-                Images.profileCounry.toSvg(color: AppColors.optionIconColor),
-                5.toSizedBoxHorizontal,
-                "${LocaleKeys.living_in.tr(namedArgs: {
-                      '@country_name@': widget.profileEntity!.country!
-                    })}"
-                    .toCaption(),
-                5.toSizedBoxHorizontal,
-                FutureBuilder<DrawableRoot>(
-                  builder: (_, item) => CustomPaint(
-                    painter: MySvgRenderer(item.data),
-                    size: const Size(20, 20),
-                  ),
-                  future: svg.fromSvgString(widget.profileEntity!.countryFlag!,
-                      widget.profileEntity!.countryFlag!),
-                ),
-                7.toSizedBoxHorizontal,
-              ].toRow(crossAxisAlignment: CrossAxisAlignment.center),
-              8.toSizedBox,
-              [
-                Images.profileCalendar.toSvg(color: AppColors.optionIconColor),
-                5.toSizedBoxHorizontal,
-                "${LocaleKeys.member_since.tr(namedArgs: {
-                      '@date@': widget.profileEntity!.memberSince!
-                    })}"
-                    .toCaption()
-              ].toRow(crossAxisAlignment: CrossAxisAlignment.center),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  [
+                    Images.profileCounry
+                        .toSvg(color: AppColors.optionIconColor),
+                    5.toSizedBoxHorizontal,
+                    "${LocaleKeys.living_in.tr(namedArgs: {
+                          '@country_name@': widget.profileEntity!.country!
+                        })}"
+                        .toCaption(),
+                    // FutureBuilder<DrawableRoot>(
+                    //   builder: (_, item) => CustomPaint(
+                    //     painter: MySvgRenderer(item.data),
+                    //     size: const Size(20, 20),
+                    //   ),
+                    //   future: svg.fromSvgString(
+                    //       widget.profileEntity!.countryFlag!,
+                    //       widget.profileEntity!.countryFlag!),
+                    // ),
+                  ].toRow(),
+                  [
+                    Images.profileCalendar
+                        .toSvg(color: AppColors.optionIconColor),
+                    5.toSizedBoxHorizontal,
+                    "${LocaleKeys.member_since.tr(namedArgs: {
+                          '@date@': widget.profileEntity!.memberSince!
+                        })}"
+                        .toCaption()
+                  ].toRow(),
+                ],
+              ),
               13.toSizedBox,
               GetStatusBar(
                 otherUserId: widget.otherUserId,
@@ -440,8 +447,8 @@ class _TopAppBarState extends State<TopAppBar> {
         ].toColumn(),
         Positioned(
           top: calculateHeightForImage(widget.profileEntity!) as double?,
-          right: context.isArabic() ? 30.toWidth as double? : null,
-          left: context.isArabic() ? null : 30.toWidth as double?,
+          right: context.isArabic() ? 20.toWidth as double? : null,
+          left: context.isArabic() ? null : 20.toWidth as double?,
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 3.0),

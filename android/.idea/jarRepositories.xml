@@ -17,13 +17,13 @@
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="MavenRepo" />
-      <option name="name" value="MavenRepo" />
+      <option name="id" value="MavenRepo15" />
+      <option name="name" value="MavenRepo15" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="BintrayJCenter9" />
-      <option name="name" value="BintrayJCenter9" />
+      <option name="id" value="BintrayJCenter5" />
+      <option name="name" value="BintrayJCenter5" />
       <option name="url" value="https://jcenter.bintray.com/" />
     </remote-repository>
     <remote-repository>

@@ -3,7 +3,6 @@ import 'package:keyboard_actions/external/platform_check/platform_check.dart';
 import '../../../../core/common/buttons/custom_button.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../../core/common/uistate/common_ui_state.dart';
-import '../../../../core/di/injection.dart';
 import '../../../../core/routes/routes.gr.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/colors.dart';
@@ -12,9 +11,7 @@ import '../../../../core/theme/strings.dart';
 import '../../../../core/widgets/loading_bar.dart';
 import '../../../../extensions.dart';
 import '../bloc/sign_up_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -25,7 +22,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  SignUpCubit? signUpCubit;
+  late SignUpCubit _signUpCubit;
   late final TextEditingController _firstNameController;
   late final TextEditingController _lastNameController;
   late final TextEditingController _userNameController;
@@ -39,7 +36,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    signUpCubit = getIt<SignUpCubit>();
     _firstNameController = TextEditingController();
     _lastNameController = TextEditingController();
     _userNameController = TextEditingController();
@@ -64,49 +60,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _signUpCubit = BlocProvider.of<SignUpCubit>(context);
     context.initScreenUtil();
-    return BlocProvider<SignUpCubit>(
-      create: (c) => signUpCubit!,
-      child: BlocListener<SignUpCubit, CommonUIState>(
-        listener: (_, state) {
-          state.maybeWhen(
-            orElse: () {},
-            error: (e) {
-              if (e!.isNotEmpty) {
-                context.showOkAlertDialog(
-                  desc: e,
-                  title: "Information",
-                );
-              }
-            },
-            success: (isSocial) {
-              // If logged in using social media buttons
-              if (isSocial) {
-                context.router.root.pushAndPopUntil(FeedScreenRoute(),
-                    predicate: (route) => false);
-              } else {
-                context.showOkAlertDialog(
-                  desc: "Sign up successfully",
-                  title: "Information",
-                  onTapOk: () {
-                    context.router.root.replace(LoginScreenRoute());
-                  },
-                );
-              }
-            },
-          );
-        },
-        child: BlocBuilder<SignUpCubit, CommonUIState>(
-          builder: (context, state) {
-            return state.when(
-              initial: buildHome,
-              success: (s) => buildHome(),
-              loading: () => LoadingBar(),
-              error: (e) => buildHome(),
-            );
+    return BlocConsumer<SignUpCubit, CommonUIState>(
+      listener: (_, state) {
+        state.maybeWhen(
+          orElse: () {},
+          error: (e) {
+            if (e!.isNotEmpty) {
+              context.showOkAlertDialog(
+                desc: e,
+                title: "Information",
+              );
+            }
           },
-        ),
-      ),
+          success: (message) {
+            if (message == SuccessState.SIGNUP_SUCCESS) {
+              context.showOkAlertDialog(
+                desc: "Sign up successfully",
+                title: "Information",
+                onTapOk: () {
+                  context.router.root.replace(LoginScreenRoute());
+                },
+              );
+            }
+          },
+        );
+      },
+      builder: (context, state) {
+        return state.when(
+          initial: buildHome,
+          success: (s) => buildHome(),
+          loading: () => LoadingBar(),
+          error: (e) => buildHome(),
+        );
+      },
     );
   }
 
@@ -121,23 +109,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
               keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
               actions: [
                 KeyboardActionsItem(
-                  focusNode: signUpCubit!.firstNameValidator.focusNode,
+                  focusNode: _signUpCubit.firstNameValidator.focusNode,
                 ),
                 KeyboardActionsItem(
-                  focusNode: signUpCubit!.lastNameValidator.focusNode,
+                  focusNode: _signUpCubit.lastNameValidator.focusNode,
                 ),
                 KeyboardActionsItem(
-                  focusNode: signUpCubit!.userNameValidator.focusNode,
+                  focusNode: _signUpCubit.userNameValidator.focusNode,
                 ),
                 KeyboardActionsItem(
-                  focusNode: signUpCubit!.emailValidator.focusNode,
+                  focusNode: _signUpCubit.emailValidator.focusNode,
                 ),
                 KeyboardActionsItem(
-                  focusNode: signUpCubit!.passwordValidator.focusNode,
+                  focusNode: _signUpCubit.passwordValidator.focusNode,
                 ),
                 KeyboardActionsItem(
                   displayDoneButton: true,
-                  focusNode: signUpCubit!.confirmPasswordValidator.focusNode,
+                  focusNode: _signUpCubit.confirmPasswordValidator.focusNode,
                 ),
               ],
             ),
@@ -209,6 +197,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 _passwordController.text.isNotEmpty
             ? 'Please enter more than 6 characters'
             : null,
+        isPassword: true,
+        isPasswordVisible: _signUpCubit.isPasswordVisible,
+        onVisibilityTap: () => _signUpCubit.changePasswordVisibility(),
       ),
       10.toSizedBox,
       Strings.confirmPassword.toTextField(
@@ -220,6 +211,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     _confirmPasswordController.text.isNotEmpty
                 ? 'Password does not match'
                 : null,
+        isPassword: true,
+        isPasswordVisible: _signUpCubit.isConfirmPasswordVisible,
+        onVisibilityTap: () => _signUpCubit.changeConfirmPasswordVisibility(),
       ),
     ].toColumn(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -268,7 +262,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         fullWidth: true,
         onTap: () async {
           if (_formValid)
-            await await signUpCubit!.signUp(
+            _signUpCubit.signUp(
               firstName: _firstNameController.text,
               lastName: _lastNameController.text,
               emailAdress: _emailController.text,
@@ -282,11 +276,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // await signUpCubit!.signUp();
       25.toSizedBox,
       [
-
+        Images.facebook
+            .toSvg()
+            .toFlatButton(() => {_signUpCubit.facebookLogin()},
+                color: AppColors.fbBlue)
+            .toSizedBox(height: 40, width: 55)
+            .toVisibility(PlatformCheck.isAndroid),
+        10.toSizedBox,
         Images.google
             .toSvg()
             .toFlatButton(
-              () => {signUpCubit!.googleLogin()},
+              () => {_signUpCubit.googleLogin()},
             )
             .toSizedBox(height: 40, width: 55)
             .toContainer(
